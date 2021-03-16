@@ -24,5 +24,14 @@ namespace Models
         public int Year { get; set; }
 
         public decimal  Price { get; set; }
+
+        [Required]
+        public string Info { get; set; }
+
+        public int Contact { get; set; }
+
+        public int RatingUp { get; set; }
+
+        public int RatingDown { get; set; }
     }
 }

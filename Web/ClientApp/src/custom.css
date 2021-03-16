@@ -1,4 +1,6 @@
 
+@import url('https://use.fontawesome.com/releases/v5.15.2/css/all.css');
+
 html {
     box-sizing: border-box;
 }
@@ -39,7 +41,7 @@ code {
 
 .car-card:hover,
 .blog-card:hover{
-    transform: rotateX(15deg) rotateY(15deg);
+    transform: rotateX(10deg) rotateY(10deg);
 }
 
 .car-card-image,
@@ -72,6 +74,32 @@ code {
     justify-content:center;
 
 }
+
+.car-card-thumbs{
+    display:flex;
+    justify-content:center;
+}
+
+.car-card-thumbs p{
+    margin-right:10px;
+    color:whitesmoke;
+}
+
+
+.car-card-thumbs i {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.car-card-thumbs .fa-thumbs-up{
+    color:lightgreen;
+}
+
+.car-card-thumbs .fa-thumbs-down{
+    color:red;
+}
+
+
 
 .car-form {
     max-width: 20%;
@@ -197,4 +225,25 @@ code {
 
 .addblog-wrapper * {
     padding:10px;
+}
+
+
+.blogdetail-wrapper {
+    max-width: 60%;
+    margin: 50px auto;
+    color:whitesmoke;
+}
+
+.blogdetail-wrapper *{
+    margin-bottom:15px
+}
+
+.blogdetail-wrapper img{
+    width:100%;
+    border-radius: 12px;
+}
+
+.blogdetail-wrapper h1,
+.blogdetail-wrapper h4{
+   text-align:center;
 }

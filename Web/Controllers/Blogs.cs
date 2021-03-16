@@ -23,6 +23,8 @@ namespace Web.Controllers
         [HttpGet("/api/[controller]/allBlogs")]
         public async Task<IEnumerable<BlogAllViewModel>> GetAll()
         {
+            var user = HttpContext.User.Identity.Name;
+            ;
             return await this.blogService.GetAllBlogsAsync();     
         }
 

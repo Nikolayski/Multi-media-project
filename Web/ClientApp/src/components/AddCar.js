@@ -11,7 +11,9 @@ export class AddCar extends Component {
                 model: "",
                 image: "",
                 year: "",
-                price: ""
+                price: "",
+                contact: "",
+                info: ""
             }
         }
 
@@ -59,6 +61,22 @@ export class AddCar extends Component {
         })
     }
 
+    contact(event) {
+        let currCar = this.state.car;
+        currCar.contact = event.target.value;
+        this.setState({
+            car: currCar
+        })
+    }
+
+    info(event) {
+        let currCar = this.state.car;
+        currCar.info = event.target.value;
+        this.setState({
+            car: currCar
+        })
+    }
+
     handleEvent = () => {
         axios.post('/api/cars/post/', this.state.car)
             .then(response => {
@@ -80,6 +98,8 @@ export class AddCar extends Component {
                     <input onChange={this.image.bind(this)} type="text" placeholder="Image Url" />
                     <input onChange={this.year.bind(this)} type="number" placeholder="Year" />
                     <input onChange={this.price.bind(this)} type="number" placeholder="Price" />
+                    <input onChange={this.contact.bind(this)} type="number" placeholder="Phone Contact" />
+                    <textarea onChange={this.info.bind(this)} type="text" placeholder="Info"></textarea>
                     <button onClick={() => this.handleEvent()}>Add</button>
                 </div>
             </section>

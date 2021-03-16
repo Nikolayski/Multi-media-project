@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
@@ -12,21 +12,25 @@ import { AddCar } from './components/AddCar';
 import Blogs from './components/Blogs';
 import AddBlog from './components/AddBlog';
 import BlogDetails from './components/BlogDetails';
+import CarDetails from './components/CarDetals';
 
 export default class App extends Component {
-  static displayName = App.name;
+    static displayName = App.name;
 
-  render () {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/cars' component={Cars} />
-        <Route exact path='/addCar' component={AddCar} />
-        <Route exact path='/addBlog' component={AddBlog} />
-        <Route exact path='/blogDetails/:id' component={BlogDetails} />
-        <Route exact path='/blogs' component={Blogs } />
-        <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
-      </Layout>
-    );
-  }
+    render() {
+        return (
+            <Layout>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/cars' component={Cars} />
+                    <Route exact path='/addCar' component={AddCar} />
+                    <Route exact path='/addBlog' component={AddBlog} />
+                    <Route exact path='/blogDetails/:id' component={BlogDetails} />
+                    <Route exact path='/carDetails/:id' component={CarDetails} />
+                    <Route exact path='/blogs' component={Blogs} />
+                    <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
+                </Switch>
+            </Layout>
+        );
+    }
 }

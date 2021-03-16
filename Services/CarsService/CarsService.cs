@@ -26,25 +26,56 @@ namespace Services.CarsService
                 Model = carModel.Model,
                 ImageUrl = carModel.Image,
                 Year = carModel.Year,
-                Price = carModel.Price
+                Price = carModel.Price,
+                Contact = carModel.Contact,
+                Info = carModel.Info,
+                RatingUp = 0,
+                RatingDown = 0
             });
             await this.db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CarViewModel>> GetCars()
+        public async Task<int> AddRateUp(string carId)
         {
-           return this.db.Cars.Select(x => new CarViewModel
-            {
+            var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == carId);
+            wantedCar.RatingUp += 1;
+            await this.db.SaveChangesAsync();
+            return (int)wantedCar.RatingUp;
+        }
 
+        public async Task<int> AddRateDown(string carId)
+        {
+            var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == carId);
+            wantedCar.RatingDown += 1;
+            await this.db.SaveChangesAsync();
+            return (int)wantedCar.RatingDown;
+        }
+
+        public async Task<IEnumerable<CarsAllViewModel>> GetCars()
+        {
+            return this.db.Cars.Select(x => new CarsAllViewModel
+            {
+                Id = x.Id,
                 Manufacturer = x.Manufacturer,
                 Model = x.Model,
                 Image = x.ImageUrl,
                 Year = x.Year,
                 Price = x.Price,
+                Contact = x.Contact,
+                Info = x.Info
             })
-                 .ToList();
+                  .ToList();
 
 
+        }
+
+        public async Task<IEnumerable<int>> GetRating(string carId)
+        {
+            var ratings = new List<int>();
+            var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == carId);
+            ratings.Add(wantedCar.RatingUp);
+            ratings.Add(wantedCar.RatingDown);
+            return ratings;
         }
     }
 }

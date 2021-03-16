@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ViewModels;
 
@@ -18,10 +19,28 @@ namespace Web.Controllers
         }
 
         [HttpGet("/api/[controller]/get")]
-        public async Task<IEnumerable<CarViewModel>> Get()
+        public async Task<IEnumerable<CarsAllViewModel>> Get()
         {
             var cars = await this.carsService.GetCars();
             return cars;
+        }
+
+        [HttpGet("/api/[controller]/rup/{id}")]
+        public async Task<int> GetRatingUp(string id)
+        {
+          return await this.carsService.AddRateUp(id);
+        }
+
+        [HttpGet("/api/[controller]/rdown/{id}")]
+        public async Task<int> GetRatingDown(string id)
+        {
+            return await this.carsService.AddRateDown(id);
+        }
+
+        [HttpGet("/api/[controller]/rating/{id}")]
+        public async Task<IEnumerable<int>> GetRating(string id)
+        {
+            return await this.carsService.GetRating(id);
         }
 
 
@@ -32,6 +51,7 @@ namespace Web.Controllers
             {
                 return NotFound("Invalid data!!!");
             }
+            ;
            await this.carsService.Add(car);
            return Ok("Done!!!");
         }

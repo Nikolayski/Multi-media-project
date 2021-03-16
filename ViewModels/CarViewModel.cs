@@ -19,5 +19,10 @@ namespace ViewModels
         [Required]
         public decimal Price { get; set; }
 
+        public int Contact { get; set; }
+
+        [Required]
+        public string Info { get; set; }
+
     }
 }
