@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -7,6 +8,7 @@ using ViewModels;
 
 namespace Web.Controllers
 {
+   
     [ApiController]
     [Route("/api/[controller]")]
     public class Cars : ControllerBase
@@ -43,16 +45,16 @@ namespace Web.Controllers
             return await this.carsService.GetRating(id);
         }
 
-
+        [Authorize]
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> Get(CarViewModel car)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 return NotFound("Invalid data!!!");
             }
-            ;
-           await this.carsService.Add(car);
+           await this.carsService.Add(car, userId);
            return Ok("Done!!!");
         }
     }

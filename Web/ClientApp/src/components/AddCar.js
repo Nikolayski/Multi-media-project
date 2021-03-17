@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
 import Car from './Car';
+import authService from './api-authorization/AuthorizeService'
 
 export class AddCar extends Component {
     constructor(props) {
@@ -77,8 +78,12 @@ export class AddCar extends Component {
         })
     }
 
-    handleEvent = () => {
-        axios.post('/api/cars/post/', this.state.car)
+    async handleEvent() {
+        const token = await authService.getAccessToken();
+        const data =  this.state.car;
+        axios.post('/api/cars/post/', data, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
+        })
             .then(response => {
                 console.log(response);
             })
@@ -100,7 +105,7 @@ export class AddCar extends Component {
                     <input onChange={this.price.bind(this)} type="number" placeholder="Price" />
                     <input onChange={this.contact.bind(this)} type="number" placeholder="Phone Contact" />
                     <textarea onChange={this.info.bind(this)} type="text" placeholder="Info"></textarea>
-                    <button onClick={() => this.handleEvent()}>Add</button>
+                    <button onClick={this.handleEvent.bind(this)}>Add</button>
                 </div>
             </section>
         )

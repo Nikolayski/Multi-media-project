@@ -18,7 +18,7 @@ namespace Services.CarsService
             this.db = db;
         }
 
-        public async Task Add(CarViewModel carModel)
+        public async Task Add(CarViewModel carModel, string userId)
         {
             await this.db.Cars.AddAsync(new Car
             {
@@ -29,6 +29,7 @@ namespace Services.CarsService
                 Price = carModel.Price,
                 Contact = carModel.Contact,
                 Info = carModel.Info,
+                OwnerId = userId,
                 RatingUp = 0,
                 RatingDown = 0
             });
@@ -61,8 +62,11 @@ namespace Services.CarsService
                 Image = x.ImageUrl,
                 Year = x.Year,
                 Price = x.Price,
+                OwnerUsername = x.Owner.UserName,
                 Contact = x.Contact,
-                Info = x.Info
+                Info = x.Info,
+                RatingUp = x.RatingUp,
+                RatingDown = x.RatingDown,
             })
                   .ToList();
 

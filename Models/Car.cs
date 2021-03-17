@@ -33,5 +33,10 @@ namespace Models
         public int RatingUp { get; set; }
 
         public int RatingDown { get; set; }
+
+        [Required]
+        public string OwnerId { get; set; }
+
+        public virtual ApplicationUser Owner { get; set; }
     }
 }

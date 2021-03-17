@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services.BlogsService;
@@ -23,8 +24,6 @@ namespace Web.Controllers
         [HttpGet("/api/[controller]/allBlogs")]
         public async Task<IEnumerable<BlogAllViewModel>> GetAll()
         {
-            var user = HttpContext.User.Identity.Name;
-            ;
             return await this.blogService.GetAllBlogsAsync();     
         }
 
@@ -35,14 +34,16 @@ namespace Web.Controllers
             return detailsModel;
         }
 
+        [Authorize]
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> Post(BlogViewModel blogModel)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 return NotFound("Invalid data!");
             }
-            await this.blogService.AddAsync(blogModel);
+            await this.blogService.AddAsync(blogModel, userId);
             return Ok("Done!");
         }
     }

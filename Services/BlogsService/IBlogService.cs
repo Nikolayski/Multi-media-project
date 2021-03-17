@@ -8,7 +8,7 @@ namespace Services.BlogsService
 {
     public interface IBlogService
     {
-        Task AddAsync(BlogViewModel blogModel);
+        Task AddAsync(BlogViewModel blogModel, string userId);
         Task<IEnumerable<BlogAllViewModel>> GetAllBlogsAsync();
         Task<BlogDetailsViewModel> GetDetailsAsync(string id);
     }

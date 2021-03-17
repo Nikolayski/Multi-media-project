@@ -30,7 +30,7 @@ export default class Blogs extends Component {
                 <Link className="addblog-button" to="/addBlog">Add Blog</Link>
                 <article className="car-card-wrapper">
                     {this.state.blog.map(x => (
-                        <Blog key={ x.id} id={x.id} theme={x.theme} title={x.title} image={x.image} description={x.description} />
+                        <Blog key={x.id} id={x.id} theme={x.theme} title={x.title} image={x.image} description={x.description} creator={x.creatorUsername } />
                         ))}
                 </article>
             </section>

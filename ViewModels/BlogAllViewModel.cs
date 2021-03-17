@@ -10,6 +10,8 @@
 
         public string Description { get; set; }
 
+        public string CreatorUsername { get; set; }
+
         public string Image { get; set; }
     }
 }

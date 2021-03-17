@@ -1,6 +1,5 @@
 ﻿import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-import { AddCar } from './AddCar';
 import Car from './Car';
 import { Link } from 'react-router-dom';
 
@@ -11,19 +10,33 @@ export default class Cars extends Component {
             cars: []
         }
     }
+    //async populateWeatherData() {
+    //    const token = await authService.getAccessToken();
+    //    const response = await fetch('weatherforecast', {
+    //        headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+    //    });
+    //    const data = await response.json();
+    //    this.setState({ forecasts: data, loading: false });
+    //}
 
-    componentDidMount = () => {
-        axios.get('/api/cars/get', { withCredentials: true }).then(response => {
-            for (var i = 0; i < response.data.length; i++) {
-                var currCars = this.state.cars;
-                currCars.push(response.data[i]);
-                this.setState({
-                    cars: currCars
-                })
-            }
-        })
+
+    componentDidMount(){
+        this.Populate();
     }
 
+    async Populate() {
+        axios.get('/api/cars/get')
+            .then(response => {
+                console.log(response);
+                for (var i = 0; i < response.data.length; i++) {
+                    var currCars = this.state.cars;
+                    currCars.push(response.data[i]);
+                    this.setState({
+                        cars: currCars
+                    })
+                }
+            })
+    }
 
     render() {
         return (
@@ -39,6 +52,7 @@ export default class Cars extends Component {
                             year={x.year}
                             price={x.price}
                             contact={x.contact}
+                            owner = {x.ownerUsername}
                             info={x.info}
                             ratingUp={x.ratingUp}
                             ratingDown={x.ratingDown}

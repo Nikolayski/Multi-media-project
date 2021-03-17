@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
+import authService from './api-authorization/AuthorizeService'
 
 export default class AddBlog extends Component {
     constructor(props) {
@@ -46,14 +47,21 @@ export default class AddBlog extends Component {
         })
     }
 
-    sendData() {
-        axios.post('/api/blogs/post', this.state.blog).then(response => {
-            console.log(response);
+    async sendData() {
+        const token = await authService.getAccessToken();
+        const data = this.state.blog;
+        axios.post('/api/blogs/post', data, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
         })
+            .then(response => {
+                console.log(response);
+            })
             .catch(error => {
                 console.log(error.message);
             })
     }
+
+
 
     render() {
         return (

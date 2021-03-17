@@ -24,6 +24,10 @@ namespace Models
         [Required]
         public string ImageUrl { get; set; }
 
+        public string CreatorId { get; set; }
+
+        public virtual ApplicationUser Creator { get; set; }
+
 
     }
 }

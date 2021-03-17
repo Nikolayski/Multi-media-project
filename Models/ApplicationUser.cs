@@ -9,6 +9,12 @@ namespace Models
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Cars = new HashSet<Car>();
+            this.Blogs = new HashSet<Blog>();
         }
+
+        public virtual ICollection<Car> Cars{ get; set; }
+
+        public virtual ICollection<Blog> Blogs{ get; set; }
     }
 }

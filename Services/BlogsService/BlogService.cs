@@ -17,7 +17,7 @@ namespace Services.BlogsService
         {
             this.db = db;
         }
-        public async Task AddAsync(BlogViewModel blogModel)
+        public async Task AddAsync(BlogViewModel blogModel, string userId)
         {
 
             var blog = new Blog
@@ -26,6 +26,7 @@ namespace Services.BlogsService
                 Title = blogModel.Title,
                 Description = blogModel.Description,
                 ImageUrl = blogModel.Image,
+                 CreatorId = userId
             };
             await this.db.Blogs.AddAsync(blog);
             await this.db.SaveChangesAsync();
@@ -40,6 +41,7 @@ namespace Services.BlogsService
                 Title = x.Title,
                 Description = x.Description,
                 Image = x.ImageUrl,
+                 CreatorUsername = x.Creator.UserName
             })
                 .ToList();
         }
