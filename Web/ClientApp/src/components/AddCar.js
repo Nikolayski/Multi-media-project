@@ -14,8 +14,10 @@ export class AddCar extends Component {
                 year: "",
                 price: "",
                 contact: "",
-                info: ""
-            }
+                info: "",
+            },
+            message: ""
+                
         }
 
     }
@@ -86,6 +88,7 @@ export class AddCar extends Component {
         })
             .then(response => {
                 console.log(response);
+                this.setState({message: "Successfully added car!"})
             })
             .catch(error => {
                 console.log(error.message);
@@ -98,7 +101,43 @@ export class AddCar extends Component {
             <section className="car-form-wrapper">
                 <Car manufacturer={this.state.car.manufacturer} model={this.state.car.model} image={this.state.car.image} year={this.state.car.year} price={this.state.car.price} />
                 <div className="car-form">
-                    <input onChange={this.manufacturer.bind(this)} type="text" placeholder="Manufacturer" />
+                    <select onChange={this.manufacturer.bind(this)}>
+                        <option value="ERROR">Manufacturer:</option>
+                        <option value="alfaRomeo">Alfa Romeo</option>
+                        <option value="audi">Audi</option>
+                        <option value="bentley">Bentley</option>
+                        <option value="bmw">Bmw</option>
+                        <option value="bugatti">Bugatti</option>
+                        <option value="cadillac">Cadillac</option>
+                        <option value="chevrolet">Chevrolet</option>
+                        <option value="citroen">Citroen</option>
+                        <option value="dacia">Dacia</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="ford">Ford</option>
+                        <option value="jeep">Jeep</option>
+                        <option value="kia">Kia</option>
+                        <option value="lada">Lada</option>
+                        <option value="lexus">Lexus</option>
+                        <option value="maserati">Maserati</option>
+                        <option value="maybach">Maybach</option>
+                        <option value="mazda">Mazda</option>
+                        <option value="mcLaren">McLaren</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="mitsubishi">Mitsubishi</option>
+                        <option value="nissan">Nissan</option>
+                        <option value="opel">Opel</option>
+                        <option value="peugeot">Peugeot</option>
+                        <option value="renault">Renault</option>
+                        <option value="rover">Rover</option>
+                        <option value="saab">Saab</option>
+                        <option value="seat">Seat</option>
+                        <option value="smart">Smart</option>
+                        <option value="skoda">Skoda</option>
+                        <option value="tesla">Tesla</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="volvo">Volvo</option>
+                    </select>                 
                     <input onChange={this.model.bind(this)} type="text" placeholder="Model" />
                     <input onChange={this.image.bind(this)} type="text" placeholder="Image Url" />
                     <input onChange={this.year.bind(this)} type="number" placeholder="Year" />
@@ -106,6 +145,7 @@ export class AddCar extends Component {
                     <input onChange={this.contact.bind(this)} type="number" placeholder="Phone Contact" />
                     <textarea onChange={this.info.bind(this)} type="text" placeholder="Info"></textarea>
                     <button onClick={this.handleEvent.bind(this)}>Add</button>
+                    <h4>{this.state.message }</h4>
                 </div>
             </section>
         )

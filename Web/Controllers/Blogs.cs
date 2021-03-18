@@ -27,6 +27,16 @@ namespace Web.Controllers
             return await this.blogService.GetAllBlogsAsync();     
         }
 
+        [HttpPost("/api/[controller]/{theme}")]
+        public async Task<IEnumerable<BlogAllViewModel>> GetThemes(string theme)
+        {
+            ;
+            var themesBlogs =await this.blogService.GetBlogsByTheme(theme);
+            ;
+            var user = this.User;
+            return themesBlogs;
+        }
+
         [HttpGet("/api/[controller]/{id}")]
         public async Task<BlogDetailsViewModel> GetDetails(string id)
         {

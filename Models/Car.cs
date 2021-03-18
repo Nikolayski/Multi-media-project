@@ -1,4 +1,5 @@
 ﻿
+using Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,8 +13,7 @@ namespace Models
         }
         public string Id { get; set; }
 
-        [Required]
-        public string Manufacturer { get; set; }
+        public Manufacturer Manufacturer { get; set; }
 
         [Required]
         public string Model { get; set; }

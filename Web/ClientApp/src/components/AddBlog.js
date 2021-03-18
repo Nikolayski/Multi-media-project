@@ -11,7 +11,8 @@ export default class AddBlog extends Component {
                 title: "",
                 description: "",
                 image: ""
-            }
+            },
+            message: ""
         }
     }
 
@@ -54,7 +55,7 @@ export default class AddBlog extends Component {
             headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
         })
             .then(response => {
-                console.log(response);
+                this.setState({message: "Successfully added blog"})
             })
             .catch(error => {
                 console.log(error.message);
@@ -81,6 +82,7 @@ export default class AddBlog extends Component {
                 <textarea onChange={this.getDescription.bind(this)} rows="20" type="text" placeholder="Description"></textarea>
                 <input onChange={this.getImage.bind(this)} type="text" placeholder="Image Url" />
                 <button onClick={this.sendData.bind(this)}>DONE</button>
+                <h4>{this.state.message }</h4>
             </article>
         )
     }

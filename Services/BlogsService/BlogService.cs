@@ -46,6 +46,24 @@ namespace Services.BlogsService
                 .ToList();
         }
 
+        public async Task<IEnumerable<BlogAllViewModel>> GetBlogsByTheme(string theme)
+        {
+           var blogs =this.db.Blogs.Where(x => x.Theme == Enum.Parse<Theme>(theme,true))
+                                .Select(x => new BlogAllViewModel
+                                {
+                                    Id = x.Id,
+                                    Theme = x.Theme.ToString(),
+                                    Title = x.Title,
+                                    Image = x.ImageUrl,
+                                    CreatorUsername = x.Creator.UserName,
+                                    Description = x.Description
+                                })
+                                .ToList();
+           
+            return blogs;
+                                
+        }
+
         public async Task<BlogDetailsViewModel> GetDetailsAsync(string id)
         {
             return  this.db.Blogs.Where(x => x.Id == id)

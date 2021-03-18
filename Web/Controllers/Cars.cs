@@ -8,7 +8,7 @@ using ViewModels;
 
 namespace Web.Controllers
 {
-   
+
     [ApiController]
     [Route("/api/[controller]")]
     public class Cars : ControllerBase
@@ -20,7 +20,7 @@ namespace Web.Controllers
             this.carsService = carsService;
         }
 
-        [HttpGet("/api/[controller]/get")]
+        [HttpGet("/api/[controller]")]
         public async Task<IEnumerable<CarsAllViewModel>> Get()
         {
             var cars = await this.carsService.GetCars();
@@ -30,7 +30,7 @@ namespace Web.Controllers
         [HttpGet("/api/[controller]/rup/{id}")]
         public async Task<int> GetRatingUp(string id)
         {
-          return await this.carsService.AddRateUp(id);
+            return await this.carsService.AddRateUp(id);
         }
 
         [HttpGet("/api/[controller]/rdown/{id}")]
@@ -54,10 +54,27 @@ namespace Web.Controllers
             {
                 return NotFound("Invalid data!!!");
             }
-           await this.carsService.Add(car, userId);
-           return Ok("Done!!!");
+            await this.carsService.Add(car, userId);
+            return Ok("Done!!!");
         }
+
+        [HttpPost("/api/[controller]/get/{manufacturer}")]
+        public async Task<IEnumerable<CarsAllViewModel>> GetCarsByManufacturer(string manufacturer)
+        {
+            var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
+            var user = this.User;
+            return cars;
+        }
+
+        [HttpGet("/api/[controller]/my-cars/{id}")]
+        public async Task<IEnumerable<CarsAllViewModel>> GetCarCollection(string id)
+        {
+            var carsCollection = await this.carsService.GetCarsCollection(id);
+            ;
+            return carsCollection;
+        }
+
     }
 
- 
+
 }

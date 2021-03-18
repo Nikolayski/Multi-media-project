@@ -11,5 +11,6 @@ namespace Services.BlogsService
         Task AddAsync(BlogViewModel blogModel, string userId);
         Task<IEnumerable<BlogAllViewModel>> GetAllBlogsAsync();
         Task<BlogDetailsViewModel> GetDetailsAsync(string id);
+        Task<IEnumerable<BlogAllViewModel>> GetBlogsByTheme(string theme);
     }
 }
