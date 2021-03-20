@@ -21,14 +21,14 @@ export default class MyCars extends Component {
                 for (var i = 0; i < res.data.length; i++) {
                     var currCars = this.state.cars;
                     currCars.push(res.data[i]);
-                    this.setState({cars: currCars})
+                    this.setState({ cars: currCars })
                 }
             })
                 .catch(err => console.log(err.message));
         });
 
 
-      
+
 
     }
 
@@ -38,20 +38,22 @@ export default class MyCars extends Component {
                 <Link className="addcar-button" to="/addCar">Add Car</Link>
                 <section className="car-card-wrapper">
                     {this.state.cars.map(x => (
-                        <Car key={x.id}
-                            id={x.id}
-                            manufacturer={x.manufacturer}
-                            model={x.model}
-                            image={x.image}
-                            year={x.year}
-                            price={x.price}
-                            contact={x.contact}
-                            owner={x.ownerUsername}
-                            info={x.info}
-                            ratingUp={x.ratingUp}
-                            ratingDown={x.ratingDown}
+                            <Car key={x.id}
+                                id={x.id}
+                                manufacturer={x.manufacturer}
+                                model={x.model}
+                                image={x.image}
+                                year={x.year}
+                                price={x.price}
+                                contact={x.contact}
+                                owner={x.ownerUsername}
+                                ratingUp={x.ratingUp}
+                                ratingDown={x.ratingDown}
+                                edit="true"
+                                remove ="true"
                         />
                     ))}
+
                 </section>
             </div>
         )

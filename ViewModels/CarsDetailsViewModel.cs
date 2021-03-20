@@ -1,7 +1,14 @@
-﻿namespace ViewModels
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ViewModels
 {
-public   class CarsAllViewModel
+    public class CarsDetailsViewModel
     {
+
         public string Id { get; set; }
         public string Manufacturer { get; set; }
 
@@ -14,6 +21,8 @@ public   class CarsAllViewModel
         public decimal Price { get; set; }
 
         public int Contact { get; set; }
+
+        public string Info { get; set; }
 
         public string OwnerUsername { get; set; }
 

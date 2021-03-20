@@ -12,5 +12,7 @@ namespace Services.BlogsService
         Task<IEnumerable<BlogAllViewModel>> GetAllBlogsAsync();
         Task<BlogDetailsViewModel> GetDetailsAsync(string id);
         Task<IEnumerable<BlogAllViewModel>> GetBlogsByTheme(string theme);
+        Task<IEnumerable<BlogAllViewModel>> GetBlogsCollection(string id);
+        Task<bool> RemoveCarAsync(string id);
     }
 }

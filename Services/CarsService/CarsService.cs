@@ -66,7 +66,6 @@ namespace Services.CarsService
                 Price = x.Price,
                 OwnerUsername = x.Owner.UserName,
                 Contact = x.Contact,
-                Info = x.Info,
                 RatingUp = x.RatingUp,
                 RatingDown = x.RatingDown,
             })
@@ -94,7 +93,6 @@ namespace Services.CarsService
                                    Model = x.Model,
                                    Image = x.ImageUrl,
                                    Year = x.Year,
-                                   Info = x.Info,
                                    OwnerUsername = x.Owner.UserName,
                                    Contact = x.Contact,
                                    Price = x.Price,
@@ -116,7 +114,6 @@ namespace Services.CarsService
                            Model = c.Model,
                            Contact = c.Contact,
                            Image = c.ImageUrl,
-                           Info = c.Info,
                            OwnerUsername = c.Owner.UserName,
                            Price = c.Price,
                            Year = c.Year,
@@ -126,7 +123,38 @@ namespace Services.CarsService
                        })
                        .ToList();
 
-         
+
+        }
+
+        public async Task<CarsDetailsViewModel> GetDetails(string id)
+        {
+            return this.db.Cars.Where(x => x.Id == id)
+                          .Select(x => new CarsDetailsViewModel
+                          {
+                              Id = x.Id,
+                              Contact = x.Contact,
+                              Image = x.ImageUrl,
+                              Info = x.Info,
+                              Manufacturer = x.Manufacturer.ToString(),
+                              Model = x.Model,
+                              OwnerUsername = x.Owner.UserName,
+                              Price = x.Price,
+                              Year = x.Year,
+                              RatingDown = x.RatingDown,
+                              RatingUp = x.RatingUp
+                          })
+                          .FirstOrDefault();
+
+
+
+        }
+
+        public async Task<bool> RemoveCarAsync(string id)
+        {
+            var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == id);
+          this.db.Cars.Remove(wantedCar);
+            await this.db.SaveChangesAsync();
+            return this.db.Cars.Any(x=>x.Id == id);
         }
     }
 }

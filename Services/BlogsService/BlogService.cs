@@ -26,7 +26,7 @@ namespace Services.BlogsService
                 Title = blogModel.Title,
                 Description = blogModel.Description,
                 ImageUrl = blogModel.Image,
-                 CreatorId = userId
+                CreatorId = userId
             };
             await this.db.Blogs.AddAsync(blog);
             await this.db.SaveChangesAsync();
@@ -41,32 +41,48 @@ namespace Services.BlogsService
                 Title = x.Title,
                 Description = x.Description,
                 Image = x.ImageUrl,
-                 CreatorUsername = x.Creator.UserName
+                CreatorUsername = x.Creator.UserName
             })
                 .ToList();
         }
 
         public async Task<IEnumerable<BlogAllViewModel>> GetBlogsByTheme(string theme)
         {
-           var blogs =this.db.Blogs.Where(x => x.Theme == Enum.Parse<Theme>(theme,true))
+            var blogs = this.db.Blogs.Where(x => x.Theme == Enum.Parse<Theme>(theme, true))
+                                 .Select(x => new BlogAllViewModel
+                                 {
+                                     Id = x.Id,
+                                     Theme = x.Theme.ToString(),
+                                     Title = x.Title,
+                                     Image = x.ImageUrl,
+                                     CreatorUsername = x.Creator.UserName,
+                                     Description = x.Description
+                                 })
+                                 .ToList();
+
+            return blogs;
+
+        }
+
+        public async Task<IEnumerable<BlogAllViewModel>> GetBlogsCollection(string id)
+        {
+            return this.db.Blogs.Where(x => x.CreatorId == id)
                                 .Select(x => new BlogAllViewModel
                                 {
                                     Id = x.Id,
                                     Theme = x.Theme.ToString(),
                                     Title = x.Title,
-                                    Image = x.ImageUrl,
                                     CreatorUsername = x.Creator.UserName,
-                                    Description = x.Description
+                                    Description = x.Description,
+                                    Image = x.ImageUrl
                                 })
                                 .ToList();
-           
-            return blogs;
-                                
+                               
         }
 
         public async Task<BlogDetailsViewModel> GetDetailsAsync(string id)
         {
-            return  this.db.Blogs.Where(x => x.Id == id)
+            return this.db.Blogs.Where(x => x.Id == id)
                           .Select(x => new BlogDetailsViewModel
                           {
                               Id = x.Id,
@@ -76,7 +92,15 @@ namespace Services.BlogsService
                               Description = x.Description
                           })
                           .FirstOrDefault();
-                          
+
+        }
+
+        public async Task<bool> RemoveCarAsync(string id)
+        {
+            var wantedBlog = this.db.Blogs.FirstOrDefault(x => x.Id == id);
+            this.db.Blogs.Remove(wantedBlog);
+            await this.db.SaveChangesAsync();
+            return !this.db.Blogs.Any(x => x.Id == id);
         }
     }
 }

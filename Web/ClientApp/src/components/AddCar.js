@@ -87,7 +87,6 @@ export class AddCar extends Component {
             headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
         })
             .then(response => {
-                console.log(response);
                 this.setState({message: "Successfully added car!"})
             })
             .catch(error => {

@@ -74,6 +74,28 @@ namespace Web.Controllers
             return carsCollection;
         }
 
+        [HttpGet("/api/[controller]/{id}")]
+        public async Task<CarsDetailsViewModel> GetDetails(string id)
+        {
+            var res = await this.carsService.GetDetails(id);
+            return res;
+          
+        }
+
+        [HttpGet("/api/[controller]/remove/{id}")]
+        public async Task<IActionResult> RemoveCar(string id)
+        {
+          var IsRemoved =  await this.carsService.RemoveCarAsync(id);
+            if (IsRemoved)
+            {
+                return NotFound("Error");
+            }
+            else
+            {
+                return Ok("Done");
+            }
+        }
+
     }
 
 

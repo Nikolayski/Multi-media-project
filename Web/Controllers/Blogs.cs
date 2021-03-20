@@ -56,6 +56,27 @@ namespace Web.Controllers
             await this.blogService.AddAsync(blogModel, userId);
             return Ok("Done!");
         }
+
+        [HttpGet("/api/[controller]/myBlogs/{id}")]
+        public async Task<IEnumerable<BlogAllViewModel>> GetBlogsCollection(string id)
+        {
+            var blogCollection =await this.blogService.GetBlogsCollection(id);
+            return blogCollection;
+        }
+
+        [HttpGet("/api/[controller]/remove/{id}")]
+        public async Task<string> RemoveCar(string id)
+        {
+         bool IsDeleted =   await this.blogService.RemoveCarAsync(id);
+            if (IsDeleted)
+            {
+                return "Done";
+            }
+            else
+            {
+                return "Error";
+            }
+        }
     }
 
 

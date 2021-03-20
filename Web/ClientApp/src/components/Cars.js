@@ -107,7 +107,6 @@ export default class Cars extends Component {
                             price={x.price}
                             contact={x.contact}
                             owner = {x.ownerUsername}
-                            info={x.info}
                             ratingUp={x.ratingUp}
                             ratingDown={x.ratingDown}
                         />
