@@ -1,4 +1,4 @@
-﻿import React,{ Component } from 'react';
+﻿import React, { Component } from 'react';
 import authService from './api-authorization/AuthorizeService';
 
 export default class CarDetails extends Component {
@@ -40,23 +40,27 @@ export default class CarDetails extends Component {
 
             })
             .catch(error => console.log(error.message))
-   
-}
+
+    }
 
     render() {
         return (
-            <div>
-                <h2>{this.state.manufacturer}</h2>
-                <h4>{this.state.model}</h4>
-                <img src={this.state.image}></img>
-                <p>{this.state.info}</p>
-                <p>{this.state.contact }</p>
-                <p>{this.state.owner }</p>
-                <p>{this.state.year }</p>
-                <p>{this.state.price }</p>
-                <p>{this.state.ratingUp }</p>
-                <p>{this.state.ratingDown }</p>
+            <div className="car-details-wrapper">
+                <article className="car-details-image">
+                    <img src={this.state.image}></img>
+                </article>
+                <article className="car-details-info">
+                    <h2>Manufacturer: {this.state.manufacturer}</h2>
+                    <h4>Model: {this.state.model}</h4>
+                    <p>Info: {this.state.info}</p>
+                    <p>Contact: {this.state.contact}</p>
+                    <p>Owner: {this.state.owner}</p>
+                    <p>Year: {this.state.year}</p>
+                    <p>Price: {this.state.price}</p>
+                    <p>Rate up: {this.state.ratingUp}</p>
+                    <p>Rate down: {this.state.ratingDown}</p>
+                </article>
             </div>
-            )
+        )
     }
 }
