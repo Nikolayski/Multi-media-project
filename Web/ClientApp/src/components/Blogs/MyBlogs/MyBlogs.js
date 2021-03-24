@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
-import authService from './api-authorization/AuthorizeService';
-import Blog from './Blog';
+import authService from '../../api-authorization/AuthorizeService';
+import Blog from '../Blog/Blog';
 
 
 export default class MyBlogs extends Component {
@@ -31,23 +31,26 @@ export default class MyBlogs extends Component {
 
 
     render() {
-        return (
-            <article className="car-card-wrapper">
-                {this.state.blogs.map(x => (
-                    <Blog
-                        key={x.id}
-                        id={x.id}
-                        theme={x.theme}
-                        title={x.title}
-                        image={x.image}
-                        description={x.description}
-                        creator={x.creatorUsername}
-                        edit="true"
-                        remove="true"
-                    />
-                ))}
-            </article>
 
-        )
+            return (
+                <article className="car-card-wrapper">
+                    {this.state.blogs.map(x => (
+                        <Blog
+                            key={x.id}
+                            id={x.id}
+                            theme={x.theme}
+                            title={x.title}
+                            image={x.image}
+                            description={x.description}
+                            creator={x.creatorUsername}
+                            edit="true"
+                            remove="true"
+                        />
+                    ))}
+                </article>
+
+            )
+        
+        
     }
 }

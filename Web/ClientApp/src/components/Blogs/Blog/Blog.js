@@ -1,7 +1,7 @@
 ﻿import { error } from 'jquery';
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import BlogDetails from './BlogDetails';
+import BlogDetails from '../BlogDetails/BlogDetails';
 
 export default class Blog extends Component {
     constructor(props) {

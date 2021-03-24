@@ -1,6 +1,6 @@
 ﻿import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-import Car from './Car';
+import Car from './Car/Car';
 import { Link } from 'react-router-dom';
 
 export default class Cars extends Component {
@@ -21,7 +21,7 @@ export default class Cars extends Component {
 
 
     componentDidMount() {
-        this.setState({cars: []})
+        this.setState({ cars: [] })
         axios.get('/api/cars')
             .then(response => {
                 for (var i = 0; i < response.data.length; i++) {
@@ -49,15 +49,17 @@ export default class Cars extends Component {
                     })
                 }
             })
+                .catch(error => console.log(error.message))
         }
-        
+
     }
 
-    
+
     render() {
+
         return (
             <div>
-                <select onChange={this.getManufacturer.bind(this) }>
+                <select onChange={this.getManufacturer.bind(this)}>
                     <option value="ERROR">Manufacturer:</option>
                     <option value="alfaRomeo">Alfa Romeo</option>
                     <option value="audi">Audi</option>
@@ -106,7 +108,7 @@ export default class Cars extends Component {
                             year={x.year}
                             price={x.price}
                             contact={x.contact}
-                            owner = {x.ownerUsername}
+                            owner={x.ownerUsername}
                             ratingUp={x.ratingUp}
                             ratingDown={x.ratingDown}
                         />
@@ -115,4 +117,7 @@ export default class Cars extends Component {
             </div>
         )
     }
+
+
+
 }

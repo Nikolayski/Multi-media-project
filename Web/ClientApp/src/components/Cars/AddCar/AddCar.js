@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
-import Car from './Car';
-import authService from './api-authorization/AuthorizeService'
+import Car from '../Car/Car';
+import authService from '../../api-authorization/AuthorizeService';
+
 
 export class AddCar extends Component {
     constructor(props) {

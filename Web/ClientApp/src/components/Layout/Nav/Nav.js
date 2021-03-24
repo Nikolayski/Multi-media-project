@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { LoginMenu } from './api-authorization/LoginMenu';
-import Weather from './Weather';
+import { LoginMenu } from '../../api-authorization/LoginMenu';
+import Weather from '../../Weather/Weather';
 
 export default class Nav extends Component {
     constructor(props) {

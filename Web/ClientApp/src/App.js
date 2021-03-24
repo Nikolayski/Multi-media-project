@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
+import { Layout } from './components/Layout/Layout';
+import { Home } from './components/Home/Home';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 
 import './custom.css'
-import Cars from './components/Cars';
-import { AddCar } from './components/AddCar';
-import Blogs from './components/Blogs';
-import AddBlog from './components/AddBlog';
-import BlogDetails from './components/BlogDetails';
-import CarDetails from './components/CarDetals';
-import MyCars from './components/MyCars';
-import MyBlogs from './components/MyBlogs';
+import Cars from './components/Cars/Cars';
+import { AddCar } from './components/Cars/AddCar/AddCar';
+import Blogs from './components/Blogs/Blogs';
+import AddBlog from './components/Blogs/AddBlog/AddBlog';
+import BlogDetails from './components/Blogs/BlogDetails/BlogDetails';
+import CarDetails from './components/Cars/CarDetails/CarDetals';
+import MyCars from './components/Cars/MyCars/MyCars';
+import MyBlogs from './components/Blogs/MyBlogs/MyBlogs';
 
 export default class App extends Component {
     static displayName = App.name;

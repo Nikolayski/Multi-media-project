@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
-import authService from './api-authorization/AuthorizeService';
-import Car from './Car';
+import Car from '../Car/Car';
 import { Link } from 'react-router-dom';
+import authService from '../../api-authorization/AuthorizeService';
 
 export default class MyCars extends Component {
     constructor(props) {
@@ -33,11 +33,11 @@ export default class MyCars extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <Link className="addcar-button" to="/addCar">Add Car</Link>
-                <section className="car-card-wrapper">
-                    {this.state.cars.map(x => (
+            return (
+                <div>
+                    <Link className="addcar-button" to="/addCar">Add Car</Link>
+                    <section className="car-card-wrapper">
+                        {this.state.cars.map(x => (
                             <Car key={x.id}
                                 id={x.id}
                                 manufacturer={x.manufacturer}
@@ -50,12 +50,14 @@ export default class MyCars extends Component {
                                 ratingUp={x.ratingUp}
                                 ratingDown={x.ratingDown}
                                 edit="true"
-                                remove ="true"
-                        />
-                    ))}
+                                remove="true"
+                            />
+                        ))}
 
-                </section>
-            </div>
-        )
+                    </section>
+                </div>
+            )
+        
+       
     }
 }
