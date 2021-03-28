@@ -1,7 +1,7 @@
 ﻿import React, { Component, Suspense } from 'react';
 import axios from 'axios';
 import Car from './Car/Car';
-import SelectManufacturer from '../SelectManufacturer';
+import SelectManufacturer from './SelectManufacturer';
 import { Link } from 'react-router-dom';
 
 export default class Cars extends Component {

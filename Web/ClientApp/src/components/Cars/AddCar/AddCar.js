@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Car from '../Car/Car';
 import authService from '../../api-authorization/AuthorizeService';
-import SelectManufacturer from '../../SelectManufacturer';
+import SelectManufacturer from '../SelectManufacturer';
 
 
 export class AddCar extends Component {

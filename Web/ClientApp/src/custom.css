@@ -270,3 +270,28 @@ code {
 .car-items * {
     display: block;
 }
+
+.navigation-item-links {
+    display: none;
+    position: absolute;
+    left:48.5%;
+}
+
+.navigation-item-links-link {
+    display: block;
+    text-align:right;
+    color:whitesmoke;
+}
+
+
+
+.hiddens:hover .navigation-item-links {
+    display: block;
+}
+
+.navigation-item-btn{
+    border:none;
+    background: transparent;
+    color:whitesmoke;
+    font-size:20px;
+}

@@ -14,7 +14,7 @@ export default class Nav extends Component {
             <header className="header">
                 <nav className="nav">
                     <article className="nav-logo-wrapper">
-                        <Link className="navigation-link" to="/"><img className="nav-logo" src="https://images.vexels.com/media/users/3/142898/isolated/preview/a0e8dda6f119164cfd44fa29d848bd91-multicolor-bubbles-globe-icon-by-vexels.png"></img></Link> 
+                        <Link className="navigation-link" to="/"><img className="nav-logo" src="https://images.vexels.com/media/users/3/142898/isolated/preview/a0e8dda6f119164cfd44fa29d848bd91-multicolor-bubbles-globe-icon-by-vexels.png"></img></Link>
                     </article>
                     <ul className="navigation">
                         <li className="navigation-item">
@@ -23,15 +23,18 @@ export default class Nav extends Component {
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/cars">Cars</Link>
                         </li>
-                        <li className="navigation-item">
-                            <Link className="navigation-link" to="/myCars">My Cars</Link>
-                        </li>
+
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/blogs" >Blogs</Link>
                         </li>
-                        <li className="navigation-item">
-                            <Link className="navigation-link" to="/myBlogs">My Blogs</Link>
-                        </li>                        
+
+                        <li className="navigation-item hiddens">
+                            <button className="navigation-item-btn">Collections <i className="fa fa-caret-down"></i></button>
+                            <div className="navigation-item-links">
+                                <Link className="navigation-item-links-link" to="/myBlogs">My Blogs</Link>
+                                <Link className="navigation-item-links-link" to="/myCars">My Cars</Link>
+                            </div>
+                        </li>
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/about">About</Link>
                         </li>
