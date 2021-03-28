@@ -7,56 +7,27 @@ export default class AddBlog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            blog: {
-                theme: "",
-                title: "",
-                description: "",
-                image: ""
-            },
-            message: ""
+            blog: {},
         }
     }
 
-    getTheme(event) {
-        var prevBlog = this.state.blog;
-        prevBlog.theme = event.target.value;
+    onInputChange(event) {
+        var currBlog = this.state.blog;
+        currBlog[event.target.name] = event.target.value;
         this.setState({
-            blog: prevBlog
+            blog: currBlog
         })
     }
 
-    getTitle(event) {
-        var prevBlog = this.state.blog;
-        prevBlog.title = event.target.value;
-        this.setState({
-            blog: prevBlog
-        })
-    }
-
-    getDescription(event) {
-        var prevBlog = this.state.blog;
-        prevBlog.description = event.target.value;
-        this.setState({
-            blog: prevBlog
-        })
-    }
-
-    getImage(event) {
-        var prevBlog = this.state.blog;
-        prevBlog.image = event.target.value;
-        this.setState({
-            blog: prevBlog
-        })
-    }
-
-    async sendData() {
+    async sendData(e) {
+        e.preventDefault();
         const token = await authService.getAccessToken();
         const data = this.state.blog;
         axios.post('/api/blogs/post', data, {
             headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
         })
             .then(response => {
-                this.setState({message: "Successfully added blog"})
+                this.props.history.push("/blogs");
             })
             .catch(error => {
                 console.log(error.message);
@@ -67,24 +38,25 @@ export default class AddBlog extends Component {
 
     render() {
         return (
-            <article className="addblog-wrapper">
-                <select onChange={this.getTheme.bind(this)}>
-                    <option value="ERROR">Choose your theme</option>
-                    <option value="photography">Photography</option>
-                    <option value="sports">Sports</option>
-                    <option value="movies">Movies</option>
-                    <option value="news">News</option>
-                    <option value="space">Space</option>
-                    <option value="holidays">Holidays</option>
-                    <option value="lifestyle">Lifestyle</option>
-                    <option value="history">History</option>
-                </select>
-                <input onChange={this.getTitle.bind(this)} type="text" placeholder="Title" />
-                <textarea onChange={this.getDescription.bind(this)} rows="20" type="text" placeholder="Description"></textarea>
-                <input onChange={this.getImage.bind(this)} type="text" placeholder="Image Url" />
-                <button onClick={this.sendData.bind(this)}>DONE</button>
-                <h4>{this.state.message }</h4>
-            </article>
+            <form onSubmit={this.sendData.bind(this)}>
+                <article className="addblog-wrapper">
+                    <select onChange={this.onInputChange.bind(this)} name="theme">
+                        <option value="ERROR">Choose your theme</option>
+                        <option value="photography">Photography</option>
+                        <option value="sports">Sports</option>
+                        <option value="movies">Movies</option>
+                        <option value="news">News</option>
+                        <option value="space">Space</option>
+                        <option value="holidays">Holidays</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="history">History</option>
+                    </select>
+                    <input onChange={this.onInputChange.bind(this)} type="text" placeholder="Title" name="title" />
+                    <textarea onChange={this.onInputChange.bind(this)} rows="20" type="text" placeholder="Description" name="description"></textarea>
+                    <input onChange={this.onInputChange.bind(this)} type="text" placeholder="Image Url" name="image" />
+                    <button type="submit">DONE</button>
+                </article>
+            </form>
         )
     }
 }

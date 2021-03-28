@@ -32,6 +32,15 @@ namespace Services.BlogsService
             await this.db.SaveChangesAsync();
         }
 
+        public async Task EditBlogAsync(BlogDetailsViewModel blogModel)
+        {
+            var wantedBlog = this.db.Blogs.FirstOrDefault(x => x.Id == blogModel.Id);
+            wantedBlog.Title = blogModel.Title;
+            wantedBlog.ImageUrl = blogModel.Image;
+            wantedBlog.Description = blogModel.Description;
+            await this.db.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<BlogAllViewModel>> GetAllBlogsAsync()
         {
             return this.db.Blogs.Select(x => new BlogAllViewModel

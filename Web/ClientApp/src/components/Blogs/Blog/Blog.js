@@ -33,7 +33,7 @@ export default class Blog extends Component {
                     <p className="blog-card-description">{this.props.creator}</p>
                     <Link to={`/BlogDetails/${this.props.id}`}>See More...</Link>
                     <article>
-                        {this.props.edit ? <button>Edit</button> : ''}
+                        {this.props.edit ? <Link to={`/edit/blog/${this.props.id}`}>Edit</Link> : ''}
                         {this.props.remove ? <button onClick={this.removeBlog.bind(this)}>Remove</button> : ''}
                     </article>
                 </section>

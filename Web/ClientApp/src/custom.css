@@ -266,3 +266,7 @@ code {
 .car-details-info{
     width:30%;
 }
+
+.car-items * {
+    display: block;
+}

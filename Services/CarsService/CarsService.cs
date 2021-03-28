@@ -156,5 +156,17 @@ namespace Services.CarsService
             await this.db.SaveChangesAsync();
             return this.db.Cars.Any(x=>x.Id == id);
         }
+
+        public async Task EditCarAsync(CarEditViewModel car)
+        {
+            var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == car.Id);
+            wantedCar.Contact = car.Contact;
+            wantedCar.ImageUrl = car.Image;
+            wantedCar.Info = car.Info;
+            wantedCar.Model = car.Model;
+            wantedCar.Price = car.Price;
+            wantedCar.Year = car.Year;
+          await  this.db.SaveChangesAsync();
+        }
     }
 }

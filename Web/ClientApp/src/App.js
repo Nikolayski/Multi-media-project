@@ -15,6 +15,7 @@ import BlogDetails from './components/Blogs/BlogDetails/BlogDetails';
 import CarDetails from './components/Cars/CarDetails/CarDetals';
 import MyCars from './components/Cars/MyCars/MyCars';
 import MyBlogs from './components/Blogs/MyBlogs/MyBlogs';
+import Edit from './components/Edit/Edit';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -32,6 +33,8 @@ export default class App extends Component {
                     <Route exact path='/blogDetails/:id' component={BlogDetails} />
                     <Route exact path='/carDetails/:id' component={CarDetails} />
                     <Route exact path='/blogs' component={Blogs} />
+                    <Route exact path='/edit/:type/:id' component={Edit} />
+
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                 </Switch>
             </Layout>

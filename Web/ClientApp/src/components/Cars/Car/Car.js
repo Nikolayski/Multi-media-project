@@ -60,7 +60,7 @@ export default class Car extends Component {
                     </article>
                     <Link to={`/CarDetails/${this.props.id}`}>Details</Link>
                     <article>
-                        {this.props.edit ? <button className="car-card-edit">Edit</button> : ''}
+                        {this.props.edit ? <Link to={`/edit/car/${this.props.id}`}>Edit</Link> : ''}
                         {this.props.remove ? <button onClick={this.removeCar.bind(this)} className="car-card-remove">Remove</button> : ''}
                     </article>
                 </div>

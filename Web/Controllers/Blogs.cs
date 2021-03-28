@@ -45,6 +45,16 @@ namespace Web.Controllers
         }
 
         [Authorize]
+        [HttpPost("/api/[controller]/edit/")]
+        public async Task<IActionResult> Edit(BlogDetailsViewModel blogModel)
+        {
+
+            await this.blogService.EditBlogAsync(blogModel);
+            return Ok("Done");
+
+        }
+
+        [Authorize]
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> Post(BlogViewModel blogModel)
         {

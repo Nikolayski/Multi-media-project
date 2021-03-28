@@ -27,11 +27,11 @@ export default class Nav extends Component {
                             <Link className="navigation-link" to="/myCars">My Cars</Link>
                         </li>
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/myBlogs">My Blogs</Link>
-                        </li>
-                        <li className="navigation-item">
                             <Link className="navigation-link" to="/blogs" >Blogs</Link>
                         </li>
+                        <li className="navigation-item">
+                            <Link className="navigation-link" to="/myBlogs">My Blogs</Link>
+                        </li>                        
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/about">About</Link>
                         </li>

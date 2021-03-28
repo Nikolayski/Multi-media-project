@@ -58,6 +58,14 @@ namespace Web.Controllers
             return Ok("Done!!!");
         }
 
+        [Authorize]
+        [HttpPost("/api/[controller]/edit/")]
+        public async Task<IActionResult> Edit(CarEditViewModel car)
+        {
+            await this.carsService.EditCarAsync(car);
+            return Ok("Done");
+        }
+
         [HttpPost("/api/[controller]/get/{manufacturer}")]
         public async Task<IEnumerable<CarsAllViewModel>> GetCarsByManufacturer(string manufacturer)
         {
@@ -79,13 +87,13 @@ namespace Web.Controllers
         {
             var res = await this.carsService.GetDetails(id);
             return res;
-          
+
         }
 
         [HttpGet("/api/[controller]/remove/{id}")]
         public async Task<IActionResult> RemoveCar(string id)
         {
-          var IsRemoved =  await this.carsService.RemoveCarAsync(id);
+            var IsRemoved = await this.carsService.RemoveCarAsync(id);
             if (IsRemoved)
             {
                 return NotFound("Error");
