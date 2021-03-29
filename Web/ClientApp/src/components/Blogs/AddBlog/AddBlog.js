@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
 import authService from '../../api-authorization/AuthorizeService';
-
+import '../../Edit/Edit.css';
 
 export default class AddBlog extends Component {
     constructor(props) {

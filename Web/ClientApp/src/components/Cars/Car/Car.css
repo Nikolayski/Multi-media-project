@@ -1,0 +1,60 @@
+﻿.car-card {
+    width: 21%;
+    border: 1px solid;
+    margin: 0px 30px 30px 0px;
+    padding: 20px 0px;
+    text-align: center;
+    border: 1px solid lightgrey;
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px 5px lightgrey;
+}
+
+    .car-card:hover {
+        transform: rotateX(10deg) rotateY(10deg);
+    }
+
+.car-card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.car-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: whitesmoke;
+}
+
+.car-card-model,
+.car-card-year,
+.car-card-price {
+    color: whitesmoke;
+    margin-bottom: 5px;
+}
+
+
+
+.car-card-thumbs {
+    display: flex;
+    justify-content: center;
+}
+
+    .car-card-thumbs p {
+        margin-right: 10px;
+        color: whitesmoke;
+    }
+
+
+    .car-card-thumbs i {
+        color: whitesmoke;
+        cursor: pointer;
+    }
+
+    .car-card-thumbs .fa-thumbs-up {
+        color: lightgreen;
+    }
+
+    .car-card-thumbs .fa-thumbs-down {
+        color: red;
+    }

@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { LoginMenu } from '../../api-authorization/LoginMenu';
 import Weather from '../../Weather/Weather';
+import './Nav.css';
 
 export default class Nav extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export default class Nav extends Component {
                     </article>
                     <ul className="navigation">
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/" >Home</Link>
+                            <NavLink className="navigation-link" to="/" >Home</NavLink>
                         </li>
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/cars">Cars</Link>

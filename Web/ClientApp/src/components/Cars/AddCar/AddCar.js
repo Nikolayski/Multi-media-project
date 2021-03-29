@@ -3,7 +3,7 @@ import axios from 'axios';
 import Car from '../Car/Car';
 import authService from '../../api-authorization/AuthorizeService';
 import SelectManufacturer from '../SelectManufacturer';
-
+import '../../Edit/Edit.css';
 
 export class AddCar extends Component {
     constructor(props) {

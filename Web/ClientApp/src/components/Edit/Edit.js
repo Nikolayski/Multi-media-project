@@ -3,6 +3,7 @@ import authService from '../api-authorization/AuthorizeService';
 import Car from '../Cars/Car/Car';
 import axios from 'axios';
 import Blog from '../Blogs/Blog/Blog';
+import './Edit.css';
 
 export default class Edit extends Component {
     constructor(props) {

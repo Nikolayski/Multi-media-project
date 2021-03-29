@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import authService from '../../api-authorization/AuthorizeService';
+import './CarDetails.css';
 
 export default class CarDetails extends Component {
     constructor(props) {

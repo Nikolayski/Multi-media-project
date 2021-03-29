@@ -1,0 +1,20 @@
+﻿.car-details-wrapper {
+    max-width: 80%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.car-details-image {
+    width: 60%;
+}
+
+    .car-details-image img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+.car-details-info {
+    width: 30%;
+}
+

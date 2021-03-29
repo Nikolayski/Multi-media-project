@@ -34,10 +34,10 @@ export default class App extends Component {
                     <Route exact path='/carDetails/:id' component={CarDetails} />
                     <Route exact path='/blogs' component={Blogs} />
                     <Route exact path='/edit/:type/:id' component={Edit} />
-
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                 </Switch>
             </Layout>
         );
     }
 }
+

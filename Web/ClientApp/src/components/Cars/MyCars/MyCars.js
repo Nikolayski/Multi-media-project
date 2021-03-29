@@ -3,6 +3,7 @@ import axios from 'axios';
 import Car from '../Car/Car';
 import { Link } from 'react-router-dom';
 import authService from '../../api-authorization/AuthorizeService';
+import '../Cars.css';
 
 export default class MyCars extends Component {
     constructor(props) {
@@ -35,7 +36,6 @@ export default class MyCars extends Component {
     render() {
             return (
                 <div>
-                    <Link className="addcar-button" to="/addCar">Add Car</Link>
                     <section className="car-card-wrapper">
                         {this.state.cars.map(x => (
                             <Car key={x.id}

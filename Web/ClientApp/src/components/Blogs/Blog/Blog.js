@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import BlogDetails from '../BlogDetails/BlogDetails';
+import '../Blogs.css';
 
 export default class Blog extends Component {
     constructor(props) {

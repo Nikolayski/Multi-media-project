@@ -3,6 +3,7 @@ import axios from 'axios';
 import Car from './Car/Car';
 import SelectManufacturer from './SelectManufacturer';
 import { Link } from 'react-router-dom';
+import './Cars.css';
 
 export default class Cars extends Component {
     constructor(props) {
@@ -60,7 +61,7 @@ export default class Cars extends Component {
 
         return (
             <div>
-                <SelectManufacturer change={this.getManufacturer.bind(this) } />
+               <SelectManufacturer change={this.getManufacturer.bind(this)} />
                
                 <Link className="addcar-button" to="/addCar">Add Car</Link>
                 <section className="car-card-wrapper">

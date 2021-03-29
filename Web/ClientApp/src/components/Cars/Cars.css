@@ -1,0 +1,18 @@
+﻿.car-card-wrapper{
+    max-width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px auto;
+}
+
+.addcar-button {
+    border: 1px solid;
+    margin-left: 50%;
+    display: inline-flex;
+    margin-top: 20px;
+    padding: 2px 20px;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 8px 5px lightgrey;
+    color: lightgray;
+}

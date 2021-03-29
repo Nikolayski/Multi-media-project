@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import authService from '../../api-authorization/AuthorizeService';
 import Blog from '../Blog/Blog';
-
+import '../Blogs.css';
 
 export default class MyBlogs extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ export default class MyBlogs extends Component {
     render() {
 
             return (
-                <article className="car-card-wrapper">
+                <article className="blog-card-wrapper">
                     {this.state.blogs.map(x => (
                         <Blog
                             key={x.id}
