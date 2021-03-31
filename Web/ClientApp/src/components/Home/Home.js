@@ -12,10 +12,10 @@ export class Home extends Component {
 
     render() {
         return (
-            <div className="home-wrapper">
-                <RandomElements>Blogs</RandomElements>
-                <RandomElements>Cars</RandomElements>
-            </div>
+                <div className="home-wrapper">
+                    <RandomElements>Blogs</RandomElements>
+                    <RandomElements>Cars</RandomElements>
+                </div>
         )
     }
 }

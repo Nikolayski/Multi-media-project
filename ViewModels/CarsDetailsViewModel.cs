@@ -26,8 +26,6 @@ namespace ViewModels
 
         public string OwnerUsername { get; set; }
 
-        public int RatingUp { get; set; }
 
-        public int RatingDown { get; set; }
     }
 }

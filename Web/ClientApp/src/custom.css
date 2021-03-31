@@ -19,26 +19,32 @@ code {
 }
 
 
-.random-elements-wrapper{
-    display:flex;
-    justify-content:flex-start;
+.random-elements-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    padding:20px;
 }
 
 .randomelement{
     width:20%;
     margin-right:40px;
+    text-align:center;
 }
 
 .randomelement img{
-    height:180px;
+    height:80px;
     width:100%;
     object-fit:cover;
+    border-radius:8px;
 }
 
 .home-wrapper{
-    max-width:80%;
+    max-width:90%;
     margin: 50px auto;
+    display:flex;
 }
+
 
 
 

@@ -140,8 +140,6 @@ namespace Services.CarsService
                               OwnerUsername = x.Owner.UserName,
                               Price = x.Price,
                               Year = x.Year,
-                              RatingDown = x.RatingDown,
-                              RatingUp = x.RatingUp
                           })
                           .FirstOrDefault();
 

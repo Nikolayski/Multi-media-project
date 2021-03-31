@@ -15,8 +15,6 @@ export default class CarDetails extends Component {
             owner: "",
             year: "",
             price: "",
-            ratingUp: "",
-            ratingDown: ""
         }
     }
 
@@ -35,8 +33,6 @@ export default class CarDetails extends Component {
                     owner: data.ownerUsername,
                     year: data.year,
                     price: data.price,
-                    ratingUp: data.ratingUp,
-                    ratingDown: data.ratingDown
                 })
 
             })
@@ -58,8 +54,6 @@ export default class CarDetails extends Component {
                     <p>Owner: {this.state.owner}</p>
                     <p>Year: {this.state.year}</p>
                     <p>Price: {this.state.price}</p>
-                    <p>Rate up: {this.state.ratingUp}</p>
-                    <p>Rate down: {this.state.ratingDown}</p>
                 </article>
             </div>
         )
