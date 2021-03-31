@@ -16,6 +16,7 @@ import CarDetails from './components/Cars/CarDetails/CarDetals';
 import MyCars from './components/Cars/MyCars/MyCars';
 import MyBlogs from './components/Blogs/MyBlogs/MyBlogs';
 import Edit from './components/Edit/Edit';
+import About from './components/About/About';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -25,6 +26,7 @@ export default class App extends Component {
             <Layout>
                 <Switch>
                     <Route exact path='/' component={Home} />
+                    <Route exact path='/about' component={ About} />
                     <Route exact path='/cars' component={Cars} />
                     <Route exact path='/addCar' component={AddCar} />
                     <Route exact path='/myCars' component={MyCars} />
