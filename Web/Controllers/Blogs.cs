@@ -37,6 +37,12 @@ namespace Web.Controllers
             return themesBlogs;
         }
 
+        [HttpGet("/api/[controller]/randomCollection")]
+        public async Task<IEnumerable<BlogRandomCollectionViewModel>> GetRandomCollection()
+        {
+            return await this.blogService.GetRandomColection();
+        } 
+
         [HttpGet("/api/[controller]/{id}")]
         public async Task<BlogDetailsViewModel> GetDetails(string id)
         {

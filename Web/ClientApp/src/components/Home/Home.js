@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RandomElements from './RandomElements/RandomElements';
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -11,7 +12,10 @@ export class Home extends Component {
 
     render() {
         return (
-                <h3>HELLO from index</h3>
+            <div className="home-wrapper">
+                <RandomElements>Blogs</RandomElements>
+                <RandomElements>Cars</RandomElements>
+            </div>
         )
     }
 }

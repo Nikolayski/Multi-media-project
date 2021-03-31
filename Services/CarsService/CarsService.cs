@@ -152,9 +152,9 @@ namespace Services.CarsService
         public async Task<bool> RemoveCarAsync(string id)
         {
             var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == id);
-          this.db.Cars.Remove(wantedCar);
+            this.db.Cars.Remove(wantedCar);
             await this.db.SaveChangesAsync();
-            return this.db.Cars.Any(x=>x.Id == id);
+            return this.db.Cars.Any(x => x.Id == id);
         }
 
         public async Task EditCarAsync(CarEditViewModel car)
@@ -166,7 +166,21 @@ namespace Services.CarsService
             wantedCar.Model = car.Model;
             wantedCar.Price = car.Price;
             wantedCar.Year = car.Year;
-          await  this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CarRandomCollectionViewModel>> GetRandomCollection()
+        {
+            return this.db.Cars.Select(x => new CarRandomCollectionViewModel
+            {
+                Id = x.Id,
+                Manufacturer = x.Manufacturer.ToString(),
+                Model = x.Model,
+                Image = x.ImageUrl
+            })
+                  .ToList()
+                .TakeLast(4);
+
         }
     }
 }

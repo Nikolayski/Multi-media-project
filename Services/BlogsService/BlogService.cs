@@ -104,6 +104,19 @@ namespace Services.BlogsService
 
         }
 
+        public async Task<IEnumerable<BlogRandomCollectionViewModel>> GetRandomColection()
+        {
+            return this.db.Blogs.Select(x => new BlogRandomCollectionViewModel
+            {
+                Id = x.Id,
+                Theme = x.Theme.ToString(),
+                Title = x.Title,
+                Image = x.ImageUrl
+            })
+                 .ToList()
+                 .TakeLast(4);
+        }
+
         public async Task<bool> RemoveCarAsync(string id)
         {
             var wantedBlog = this.db.Blogs.FirstOrDefault(x => x.Id == id);

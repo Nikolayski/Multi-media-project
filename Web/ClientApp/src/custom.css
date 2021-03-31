@@ -19,6 +19,26 @@ code {
 }
 
 
+.random-elements-wrapper{
+    display:flex;
+    justify-content:flex-start;
+}
+
+.randomelement{
+    width:20%;
+    margin-right:40px;
+}
+
+.randomelement img{
+    height:180px;
+    width:100%;
+    object-fit:cover;
+}
+
+.home-wrapper{
+    max-width:80%;
+    margin: 50px auto;
+}
 
 
 

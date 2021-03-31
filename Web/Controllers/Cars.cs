@@ -27,6 +27,12 @@ namespace Web.Controllers
             return cars;
         }
 
+        [HttpGet("/api/[controller]/randomCollection")]
+        public async Task<IEnumerable<CarRandomCollectionViewModel>> GetRandomCollection()
+        {
+            return await this.carsService.GetRandomCollection();
+        }
+
         [HttpGet("/api/[controller]/rup/{id}")]
         public async Task<int> GetRatingUp(string id)
         {
