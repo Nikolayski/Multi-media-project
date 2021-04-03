@@ -14,6 +14,7 @@ using Models;
 using Services;
 using Services.BlogsService;
 using Services.CarsService;
+using Services.ContactsService;
 
 namespace Web
 {
@@ -44,6 +45,7 @@ namespace Web
 
             services.AddTransient<ICarsService, CarsService>();
             services.AddTransient<IBlogService, BlogService>();
+            services.AddTransient<IContactService, ContactService>();
             
 
             services.AddControllersWithViews();

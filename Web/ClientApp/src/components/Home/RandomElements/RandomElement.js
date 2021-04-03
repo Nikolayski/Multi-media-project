@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import RandomElementContent from './RandomElementContent';
 
 const RandomElement = (props) => {
     const [car, SetCar] = useState({});
@@ -25,21 +26,27 @@ const RandomElement = (props) => {
 
     }, [])
 
-    if (car.manufacturer != '' && car.manufacturer != null) {
+    if (car.manufacturer != '' && car.manufacturer != null &&
+        car.model != '' && car.model != null &&
+        car.image != '' && car.image != null) {
         return (
-            <div className="randomelement">
-                <h3>{car.manufacturer}</h3>
-                <p>{car.model}</p>
-                <Link to={`/carDetails/${car.id}`}><img src={car.image} /></Link>
-            </div>
+            <RandomElementContent>
+                {car.manufacturer}
+                {car.model}
+                {car.id}
+                {car.image}
+                carDetails
+            </RandomElementContent>
         )
     }
     return (
-        <div className="randomelement">
-            <h3>{blog.theme}</h3>
-            <p>{blog.title}</p>
-            <Link to={`/blogDetails/${blog.id}`}><img src={blog.image} /></Link>
-        </div>
+        <RandomElementContent>
+            {blog.theme}
+            {blog.title}
+            {blog.id}
+            {blog.image}
+            blogDetails
+        </RandomElementContent>
     )
 }
 

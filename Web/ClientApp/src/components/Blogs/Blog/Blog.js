@@ -28,8 +28,8 @@ export default class Blog extends Component {
             return (
                 <section className="blog-card">
                     <h4 className="blog-card-theme">{this.props.theme}</h4>
-                    <p className="blog-card-title">{this.props.title}</p>
                     <img className="blog-card-image" src={this.props.image}></img>
+                    <p className="blog-card-title">{this.props.title}</p>
                     <p className="blog-card-description">{this.props.desc}</p>
                     <p className="blog-card-description">{this.props.creator}</p>
                     <Link to={`/BlogDetails/${this.props.id}`}>See More...</Link>

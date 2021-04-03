@@ -12,15 +12,6 @@ export default class Cars extends Component {
             cars: []
         }
     }
-    //async populateWeatherData() {
-    //    const token = await authService.getAccessToken();
-    //    const response = await fetch('weatherforecast', {
-    //        headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-    //    });
-    //    const data = await response.json();
-    //    this.setState({ forecasts: data, loading: false });
-    //}
-
 
     componentDidMount() {
         this.setState({ cars: [] })
@@ -53,17 +44,24 @@ export default class Cars extends Component {
             })
                 .catch(error => console.log(error.message))
         }
-
     }
 
-
     render() {
-
+        if (this.state.cars.length == 0) {
+            return (
+                <div className="no-cars-manufacturer">
+                    <h2 className="no-cars-message">No cars available</h2>
+                    <SelectManufacturer change={this.getManufacturer.bind(this)} />
+                    <Link className="addcar-button" to="/addCar">Add Car</Link>
+                </div>
+            )
+        }
         return (
             <div>
-               <SelectManufacturer change={this.getManufacturer.bind(this)} />
-               
-                <Link className="addcar-button" to="/addCar">Add Car</Link>
+                <div className="cars-buttons">
+                    <SelectManufacturer change={this.getManufacturer.bind(this)} />
+                    <Link className="addcar-button" to="/addCar">Add Car</Link>
+                </div>
                 <section className="car-card-wrapper">
                     {this.state.cars.map(x => (
                         <Car key={x.id}
@@ -83,7 +81,4 @@ export default class Cars extends Component {
             </div>
         )
     }
-
-
-
 }

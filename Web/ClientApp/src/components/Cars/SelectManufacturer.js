@@ -7,7 +7,8 @@ export default class SelectManufacturer extends Component {
 
     render() {
         return (
-            <select onChange={this.props.change} name="manufacturer">
+            <select className="select-manufacturer"  onChange={this.props.change} name="manufacturer">
+                <option value="error">Choose brand</option>
                 <option value="all">Manufacturers:</option>
                 <option value="alfaRomeo">Alfa Romeo</option>
                 <option value="audi">Audi</option>

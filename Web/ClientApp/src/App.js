@@ -17,6 +17,7 @@ import MyCars from './components/Cars/MyCars/MyCars';
 import MyBlogs from './components/Blogs/MyBlogs/MyBlogs';
 import Edit from './components/Edit/Edit';
 import About from './components/About/About';
+import Contact from './components/Contact/Contact';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -28,6 +29,7 @@ export default class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={ About} />
                     <Route exact path='/cars' component={Cars} />
+                    <Route exact path='/contact' component={Contact} />
                     <Route exact path='/addCar' component={AddCar} />
                     <Route exact path='/myCars' component={MyCars} />
                     <Route exact path='/myBlogs' component={MyBlogs} />

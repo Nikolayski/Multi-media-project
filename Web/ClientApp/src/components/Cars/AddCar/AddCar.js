@@ -16,11 +16,14 @@ export class AddCar extends Component {
 
     inputOnChange(event) {
         var currCar = this.state.car;
-        currCar[event.target.name] = event.target.value;
+        if (event.target.value != "error" && event.target.value != "all") {
+            currCar[event.target.name] = event.target.value;
 
-        this.setState({
-            car: currCar
-        })
+            this.setState({
+                car: currCar
+            })
+        }
+       
     }
 
 

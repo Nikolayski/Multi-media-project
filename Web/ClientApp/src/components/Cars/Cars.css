@@ -7,12 +7,35 @@
 
 .addcar-button {
     border: 1px solid;
-    margin-left: 50%;
     display: inline-flex;
-    margin-top: 20px;
     padding: 2px 20px;
+    margin-left:20px;
     font-size: 18px;
     border-radius: 12px;
     box-shadow: 0px 0px 8px 5px lightgrey;
-    color: lightgray;
+    color: whitesmoke;
+}
+
+
+.select-manufacturer {
+    border: none;
+    background: transparent;
+    box-shadow: 0px 0px 8px 5px lightgrey;
+    color:lightgray;
+    border-radius: 12px;
+    padding:5px;
+}
+
+.select-manufacturer option{
+   background: rgb(100, 190, 200);
+}
+
+.no-cars-manufacturer {
+    display: flex;
+    justify-content: center;
+    margin-top:30px;    
+}
+
+.no-cars-message {
+    margin-right: 20px;
 }

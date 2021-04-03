@@ -48,23 +48,35 @@ export default class Blogs extends Component {
 
 
     render() {
-        return (
-            <section>
-             <SelectBlogTheme change={this.showTheme.bind(this)} />
-                <Link className="addblog-button" to="/addBlog">Add Blog</Link>
-                <article className="blog-card-wrapper">
-                    {this.state.blogs.map(x => (
-                        <Blog
-                            key={x.id}
-                            id={x.id}
-                            theme={x.theme}
-                            title={x.title}
-                            image={x.image}
-                            description={x.description}
-                            creator={x.creatorUsername} />
-                    ))}
-                </article>
-            </section>
-        )
+        if (this.state.blogs.length != 0) {
+            return (
+                <section>
+                    <div className="blogs-theme">
+                        <SelectBlogTheme change={this.showTheme.bind(this)} />
+                        <Link className="addblog-button" to="/addBlog">Add Blog</Link>
+                    </div>
+                    <article className="blog-card-wrapper">
+                        {this.state.blogs.map(x => (
+                            <Blog
+                                key={x.id}
+                                id={x.id}
+                                theme={x.theme}
+                                title={x.title}
+                                image={x.image}
+                                description={x.description}
+                                creator={x.creatorUsername} />
+                        ))}
+                    </article>
+                </section>
+            )
+
+        }
+            return (
+                <div className="no-blogs-theme">
+                    <h2>No blogs available</h2>
+                    <SelectBlogTheme change={this.showTheme.bind(this)} />
+                    <Link className="addblog-button" to="/addBlog">Add Blog</Link>
+                </div>
+            )
     }
 }
