@@ -13,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using Models;
 using Services;
 using Services.BlogsService;
-using Services.CarsService;
 using Services.ContactsService;
 
 namespace Web
@@ -43,7 +42,7 @@ namespace Web
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            services.AddTransient<ICarsService, CarsService>();
+            services.AddTransient<ICarService, CarService>();
             services.AddTransient<IBlogService, BlogService>();
             services.AddTransient<IContactService, ContactService>();
             

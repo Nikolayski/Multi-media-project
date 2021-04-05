@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import BlogDetails from '../BlogDetails/BlogDetails';
 import '../Blogs.css';
+import * as services from '../../../Services/ComponentServices';
 
 export default class Blog extends Component {
     constructor(props) {
@@ -14,15 +15,14 @@ export default class Blog extends Component {
 
 
     removeBlog() {
-        fetch("https://localhost:44387/api/blogs/remove/" + this.props.id)
-            .then(res => res.text())
-            .then(data => this.setState({ isDeleted: true}))
+        services.remove(this.props.id, "blogs")
+            .then(data => this.setState({ isDeleted: true }))
             .catch(error => console.log(error.message))
     }
 
     render() {
         if (this.state.isDeleted) {
-        return    <Redirect to="/MyBlogs" />
+            return <Redirect to="/MyBlogs" />
         }
         else {
             return (
@@ -40,6 +40,6 @@ export default class Blog extends Component {
                 </section>
             )
         }
-       
+
     }
 }

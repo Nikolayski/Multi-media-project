@@ -1,43 +1,19 @@
 ﻿import React, { Component } from 'react';
 import authService from '../../api-authorization/AuthorizeService';
 import './CarDetails.css';
+import * as services from '../../../Services/ComponentServices';
 
 export default class CarDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: "",
-            manufacturer: "",
-            model: "",
-            contact: "",
-            image: "",
-            info: "",
-            owner: "",
-            year: "",
-            price: "",
         }
     }
 
     componentDidMount() {
-
-        fetch('https://localhost:44387/api/cars/' + this.props.match.params.id)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    id: data.id,
-                    manufacturer: data.manufacturer,
-                    model: data.model,
-                    contact: data.contact,
-                    image: data.image,
-                    info: data.info,
-                    owner: data.ownerUsername,
-                    year: data.year,
-                    price: data.price,
-                })
-
-            })
+        services.getDetails(this.props.match.params.id, "cars")
+            .then(data => this.setState(data))
             .catch(error => console.log(error.message))
-
     }
 
     render() {

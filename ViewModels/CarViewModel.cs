@@ -24,5 +24,8 @@ namespace ViewModels
         [Required]
         public string Info { get; set; }
 
+        [Required]
+        public string UserId { get; set; }
+
     }
 }

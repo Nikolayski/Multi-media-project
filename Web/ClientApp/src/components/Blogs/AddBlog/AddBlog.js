@@ -2,41 +2,31 @@
 import axios from 'axios';
 import authService from '../../api-authorization/AuthorizeService';
 import '../../Edit/Edit.css';
+import * as services from '../../../Services/ComponentServices';
 
 export default class AddBlog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            blog: {},
+
         }
     }
 
     onInputChange(event) {
-        var currBlog = this.state.blog;
-        currBlog[event.target.name] = event.target.value;
-        this.setState({
-            blog: currBlog
-        })
+        this.setState({ [event.target.name]: event.target.value })
     }
 
-    async sendData(e) {
+    sendData(e) {
         e.preventDefault();
-        const token = await authService.getAccessToken();
-        const data = this.state.blog;
-        axios.post('/api/blogs/post', data, {
-            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
+        authService.getUser().then(response => {
+            this.setState({ userId: response.sub })
+           services.create(this.state, "blogs")
+                .then(data => this.props.history.push("/blogs"))
+                .catch(error => console.log(error.message))
         })
-            .then(response => {
-                this.props.history.push("/blogs");
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
     }
 
-
-
-    render() {
+   render() {
         return (
             <form onSubmit={this.sendData.bind(this)}>
                 <article className="addblog-wrapper">

@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import RandomElements from '../Home/RandomElements/RandomElements';
 
 const About = () => {
 

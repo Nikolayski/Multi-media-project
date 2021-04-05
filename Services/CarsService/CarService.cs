@@ -9,13 +9,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using ViewModels;
 
-namespace Services.CarsService
+namespace Services
+
 {
-    public class CarsService : ICarsService
+    public class CarService : ICarService
     {
         private readonly ApplicationDbContext db;
 
-        public CarsService(ApplicationDbContext db)
+        public CarService(ApplicationDbContext db)
         {
             this.db = db;
         }

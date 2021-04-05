@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import RandomElements from './RandomElements/RandomElements';
 
-export class Home extends Component {
-    static displayName = Home.name;
-    constructor(props) {
-        super(props);
-    }
+const Home = (props) => {
+    const [ blogs, SetBlogs ] = useState('Blogs');
+    const [ cars, SetCars ] = useState('Cars');
 
 
-
-
-    render() {
-        return (
-                <div className="home-wrapper">
-                    <RandomElements>Blogs</RandomElements>
-                    <RandomElements>Cars</RandomElements>
-                </div>
-        )
-    }
+    return (
+        <div className="home-wrapper">
+            <RandomElements>{ blogs}</RandomElements>
+            <RandomElements>{ cars }</RandomElements>
+        </div>
+    )
 }
 
+export default Home;

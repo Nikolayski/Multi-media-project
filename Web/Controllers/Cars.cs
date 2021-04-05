@@ -13,9 +13,9 @@ namespace Web.Controllers
     [Route("/api/[controller]")]
     public class Cars : ControllerBase
     {
-        private readonly ICarsService carsService;
+        private readonly ICarService carsService;
 
-        public Cars(ICarsService carsService)
+        public Cars(ICarService carsService)
         {
             this.carsService = carsService;
         }
@@ -51,18 +51,20 @@ namespace Web.Controllers
             return await this.carsService.GetRating(id);
         }
 
-        [Authorize]
         [HttpPost("/api/[controller]/post/")]
-        public async Task<IActionResult> Get(CarViewModel car)
+        public async Task<IActionResult> Post(CarViewModel car)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 return NotFound("Invalid data!!!");
             }
-            await this.carsService.Add(car, userId);
+            ;
+            await this.carsService.Add(car, car.UserId);
+            ;
             return Ok("Done!!!");
         }
+
+       
 
         [Authorize]
         [HttpPost("/api/[controller]/edit/")]
@@ -72,7 +74,7 @@ namespace Web.Controllers
             return Ok("Done");
         }
 
-        [HttpPost("/api/[controller]/get/{manufacturer}")]
+        [HttpGet("/api/[controller]/get/{manufacturer}")]
         public async Task<IEnumerable<CarsAllViewModel>> GetCarsByManufacturer(string manufacturer)
         {
             var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
@@ -96,7 +98,7 @@ namespace Web.Controllers
 
         }
 
-        [HttpGet("/api/[controller]/remove/{id}")]
+        [HttpDelete("/api/[controller]/remove/{id}")]
         public async Task<IActionResult> RemoveCar(string id)
         {
             var IsRemoved = await this.carsService.RemoveCarAsync(id);
@@ -109,8 +111,7 @@ namespace Web.Controllers
                 return Ok("Done");
             }
         }
-
-    }
+}
 
 
 }

@@ -6,7 +6,7 @@ using ViewModels;
 
 namespace Services
 {
-    public interface ICarsService
+    public interface ICarService
     {
         Task Add(CarViewModel carModel, string userId);
         Task<IEnumerable<CarsAllViewModel>> GetCars();

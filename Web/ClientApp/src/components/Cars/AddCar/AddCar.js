@@ -1,56 +1,42 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import Car from '../Car/Car';
 import authService from '../../api-authorization/AuthorizeService';
 import SelectManufacturer from '../SelectManufacturer';
 import '../../Edit/Edit.css';
+import * as services from '../../../Services/ComponentServices';
 
 export class AddCar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            car: {},
         }
-
     }
 
     inputOnChange(event) {
-        var currCar = this.state.car;
         if (event.target.value != "error" && event.target.value != "all") {
-            currCar[event.target.name] = event.target.value;
-
-            this.setState({
-                car: currCar
-            })
+            this.setState({ [event.target.name]: event.target.value })
         }
-       
     }
 
-
-    async handleEvent(event) {
+     handleEvent(event) {
         event.preventDefault();
-        const token = await authService.getAccessToken();
-        const data = this.state.car;
-        axios.post('/api/cars/post/', data, {
-            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
+        authService.getUser().then(res => {
+            this.setState({ userId: res.sub })
+            services.create(this.state, "cars")
+                .then(data => this.props.history.push("/cars"))
+                .catch(err => console.log(err.message))
         })
-            .then(response => {
-                this.props.history.push("/cars");
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
+            .catch(error => console.log(error.message))
     }
-
 
     render() {
         return (
             <section className="car-form-wrapper">
-                <Car manufacturer={this.state.car.manufacturer} model={this.state.car.model} image={this.state.car.image} year={this.state.car.year} contact={this.state.car.contact} price={this.state.car.price} />
+                <Car manufacturer={this.state.manufacturer} model={this.state.model} image={this.state.image} year={this.state.year} contact={this.state.contact} price={this.state.price} />
                 <div className="car-form">
                     <form className="car-items" onSubmit={this.handleEvent.bind(this)}>
-                        <SelectManufacturer change={this.inputOnChange.bind(this) } />
-                       
+                        <SelectManufacturer change={this.inputOnChange.bind(this)} />
+
                         <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Model" name="model" />
                         <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Image Url" name="image" />
                         <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Year" name="year" />

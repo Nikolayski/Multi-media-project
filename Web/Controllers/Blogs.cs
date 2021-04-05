@@ -21,13 +21,13 @@ namespace Web.Controllers
             this.blogService = blogService;
         }
 
-        [HttpGet("/api/[controller]/allBlogs")]
+        [HttpGet("/api/[controller]")]
         public async Task<IEnumerable<BlogAllViewModel>> GetAll()
         {
             return await this.blogService.GetAllBlogsAsync();     
         }
 
-        [HttpPost("/api/[controller]/{theme}")]
+        [HttpGet("/api/[controller]/get/{theme}")]
         public async Task<IEnumerable<BlogAllViewModel>> GetThemes(string theme)
         {
             ;
@@ -60,27 +60,25 @@ namespace Web.Controllers
 
         }
 
-        [Authorize]
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> Post(BlogViewModel blogModel)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!this.ModelState.IsValid)
             {
                 return NotFound("Invalid data!");
             }
-            await this.blogService.AddAsync(blogModel, userId);
+            await this.blogService.AddAsync(blogModel, blogModel.UserId);
             return Ok("Done!");
         }
 
-        [HttpGet("/api/[controller]/myBlogs/{id}")]
+        [HttpGet("/api/[controller]/my-blogs/{id}")]
         public async Task<IEnumerable<BlogAllViewModel>> GetBlogsCollection(string id)
         {
             var blogCollection =await this.blogService.GetBlogsCollection(id);
             return blogCollection;
         }
 
-        [HttpGet("/api/[controller]/remove/{id}")]
+        [HttpDelete("/api/[controller]/remove/{id}")]
         public async Task<string> RemoveCar(string id)
         {
          bool IsDeleted =   await this.blogService.RemoveCarAsync(id);

@@ -17,5 +17,8 @@ namespace ViewModels
 
         [Required]
         public string Image { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
     }
 }

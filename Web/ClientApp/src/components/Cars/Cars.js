@@ -1,9 +1,10 @@
 ﻿import React, { Component, Suspense } from 'react';
-import axios from 'axios';
 import Car from './Car/Car';
 import SelectManufacturer from './SelectManufacturer';
 import { Link } from 'react-router-dom';
 import './Cars.css';
+import * as services from '../../Services/ComponentServices';
+
 
 export default class Cars extends Component {
     constructor(props) {
@@ -15,16 +16,9 @@ export default class Cars extends Component {
 
     componentDidMount() {
         this.setState({ cars: [] })
-        axios.get('/api/cars')
-            .then(response => {
-                for (var i = 0; i < response.data.length; i++) {
-                    var currCars = this.state.cars;
-                    currCars.push(response.data[i]);
-                    this.setState({
-                        cars: currCars
-                    })
-                }
-            })
+        services.getAll("cars")
+            .then(data => this.setState({ cars: data }))
+            .catch(error => console.log(error.message))
     }
 
     getManufacturer(event) {
@@ -33,15 +27,8 @@ export default class Cars extends Component {
         }
         else {
             this.setState({ cars: [] })
-            axios.post('/api/cars/get/' + event.target.value).then(response => {
-                for (var i = 0; i < response.data.length; i++) {
-                    var currCars = this.state.cars;
-                    currCars.push(response.data[i]);
-                    this.setState({
-                        cars: currCars
-                    })
-                }
-            })
+            services.getOption(event.target.value, "cars")
+                .then(data => this.setState({ cars: data }))
                 .catch(error => console.log(error.message))
         }
     }

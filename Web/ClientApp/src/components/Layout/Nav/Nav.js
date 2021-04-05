@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { LoginMenu } from '../../api-authorization/LoginMenu';
 import Weather from '../../Weather/Weather';
 import './Nav.css';
+import authService from '../../api-authorization/AuthorizeService';
 
 export default class Nav extends Component {
     constructor(props) {
@@ -28,7 +29,6 @@ export default class Nav extends Component {
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/blogs" >Blogs</Link>
                         </li>
-
                         <li className="navigation-item hiddens">
                             <button className="navigation-item-btn">Collections <i className="fa fa-caret-down"></i></button>
                             <div className="navigation-item-links">

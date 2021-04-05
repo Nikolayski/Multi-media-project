@@ -1,52 +1,18 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import RandomElementContent from './RandomElementContent';
 
 const RandomElement = (props) => {
-    const [car, SetCar] = useState({});
-    const [blog, SetBlog] = useState({});
-
-    useEffect(() => {
-        if (props.manufacturer && props.model) {
-            SetCar({
-                id: props.id,
-                manufacturer: props.manufacturer,
-                model: props.model,
-                image: props.image
-            });
-        }
-        if (props.theme && props.title) {
-            SetBlog({
-                id: props.id,
-                theme: props.theme,
-                title: props.title,
-                image: props.image
-            })
-        }
-
-    }, [])
-
-    if (car.manufacturer != '' && car.manufacturer != null &&
-        car.model != '' && car.model != null &&
-        car.image != '' && car.image != null) {
-        return (
-            <RandomElementContent>
-                {car.manufacturer}
-                {car.model}
-                {car.id}
-                {car.image}
-                carDetails
-            </RandomElementContent>
-        )
-    }
+    const detailsRoute = props.routing.slice(0, props.routing.length - 1) + 'Details';
     return (
-        <RandomElementContent>
-            {blog.theme}
-            {blog.title}
-            {blog.id}
-            {blog.image}
-            blogDetails
-        </RandomElementContent>
+        <>
+            {props.collection.map(x => (
+                <div key={x.id} className="randomelement">
+                    {x.manufacturer ? <h3>{x.manufacturer}</h3> : <h3>{x.theme}</h3>}
+                    {x.model ? <p>{x.model}</p> : <p>{x.title}</p>}
+                    <Link to={`/${detailsRoute}/${x.id}`}><img src={x.image} /></Link>
+                </div>
+            ))}
+        </>
     )
 }
 
