@@ -19,92 +19,27 @@ code {
 }
 
 
-.random-elements-wrapper {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 30px;
-    padding:20px;
-}
-
-.randomelement{
-    width:20%;
-    margin-right:40px;
-    text-align:center;
-}
-
-.randomelement img{
-    height:80px;
-    width:100%;
-    object-fit:cover;
-    border-radius:8px;
-}
-
-.home-wrapper{
-    max-width:90%;
-    margin: 50px auto;
-    display:flex;
-}
-
-.about-wrapper{
-    max-width:80%;
-    margin:50px auto;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    font-size:20px;
-    color:whitesmoke;
-}
-
-
-.about-wrapper-title {
-   margin-left:5%;
-   margin-bottom:30px;
-}
-
-.about-product{
-    flex-basis:80%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:50px;
-    margin-top:30px;
-}
-
-    .about-product img {
-        width: 80%;
-        border-radius: 25px;
-    }
-
-.about-blog {
-    margin-left: 10%;
-    flex-basis: 70%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
-}
-
-    .about-blog img {
-        width: 80%;
-        border-radius: 25px;
-    }
-
-.about-selling{
-    flex-basis:70%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.about-selling img {
-    width: 85%;
-    border-radius: 25px;
-}
-
 .cars-buttons{
     display:flex;
     justify-content:center;
     margin-top:20px;
 }
 
+.car-search{
+    max-width:60%;
+    margin:30px auto;
+}
 
+.car-search input {
+    background: transparent;
+    box-shadow: 0px 0px 8px 5px lightgrey;
+    border: 3px solid lightgrey;
+    padding:5px;
+    width:15%;
+    border-radius:10px;
+}
+
+.car-search input:last-child{
+    color:white;
+}
 

@@ -3,13 +3,19 @@ import axios from 'axios';
 import authService from '../../api-authorization/AuthorizeService';
 import '../../Edit/Edit.css';
 import * as services from '../../../Services/ComponentServices';
+import { Redirect } from 'react-router-dom';
 
 export default class AddBlog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            IsLoggedIn: false
         }
+    }
+
+    componentDidMount() {
+        authService.isAuthenticated()
+            .then(res => this.setState({ IsLogged: res }))
     }
 
     onInputChange(event) {
@@ -26,7 +32,10 @@ export default class AddBlog extends Component {
         })
     }
 
-   render() {
+    render() {
+        if (!this.state.IsLoggedIn) {
+            return <Redirect to="/authentication/login" />
+        }
         return (
             <form onSubmit={this.sendData.bind(this)}>
                 <article className="addblog-wrapper">

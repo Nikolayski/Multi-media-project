@@ -19,5 +19,6 @@ namespace Services
         Task<bool> RemoveCarAsync(string id);
         Task EditCarAsync(CarEditViewModel car);
         Task<IEnumerable<CarRandomCollectionViewModel>> GetRandomCollection();
+        Task<IEnumerable<CarsAllViewModel>> GetCarsBySearch(CarSearchViewModel carModel);
     }
 }

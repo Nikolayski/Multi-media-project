@@ -1,0 +1,19 @@
+﻿.random-elements-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.randomelement {
+    width: 20%;
+    margin-right: 40px;
+    text-align: center;
+}
+
+    .randomelement img {
+        height: 80px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }

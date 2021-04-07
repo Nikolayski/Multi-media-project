@@ -1,6 +1,4 @@
-﻿
-
-using Data;
+﻿using Data;
 using Models;
 using Models.Enums;
 using System;
@@ -180,6 +178,27 @@ namespace Services
                   .ToList()
                 .TakeLast(4);
 
+        }
+
+        public async Task<IEnumerable<CarsAllViewModel>> GetCarsBySearch(CarSearchViewModel carModel)
+        {
+            return this.db.Cars.Where(x => x.Manufacturer == Enum.Parse<Manufacturer>(carModel.Manufacturer, true)
+                                            && x.Year >= carModel.YearFrom && x.Year <= carModel.YearTo
+                                            && x.Price >= carModel.PriceFrom && x.Price <= carModel.PriceTo)
+                                    .Select(x => new CarsAllViewModel
+                                    {
+                                        Id = x.Id,
+                                        Manufacturer = x.Manufacturer.ToString(),
+                                        Model = x.Model,
+                                        Image = x.ImageUrl,
+                                        Year = x.Year,
+                                        Price = x.Price,
+                                        OwnerUsername = x.Owner.UserName,
+                                        Contact = x.Contact,
+                                        RatingUp = x.RatingUp,
+                                        RatingDown = x.RatingDown,
+                                    })
+                                    .ToList();
         }
     }
 }

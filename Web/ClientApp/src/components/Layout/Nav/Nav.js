@@ -8,8 +8,13 @@ import authService from '../../api-authorization/AuthorizeService';
 export default class Nav extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            IsLogged: false
+        }
     }
-
+    componentDidMount() {
+        authService.isAuthenticated().then(res => this.setState({ IsLogged: res }))
+    }
 
     render() {
         return (
@@ -29,13 +34,13 @@ export default class Nav extends Component {
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/blogs" >Blogs</Link>
                         </li>
-                        <li className="navigation-item hiddens">
+                        {this.state.IsLogged ? <li className="navigation-item hiddens">
                             <button className="navigation-item-btn">Collections <i className="fa fa-caret-down"></i></button>
                             <div className="navigation-item-links">
                                 <Link className="navigation-item-links-link" to="/myBlogs">My Blogs</Link>
                                 <Link className="navigation-item-links-link" to="/myCars">My Cars</Link>
                             </div>
-                        </li>
+                        </li> : ''}
                         <li className="navigation-item">
                             <Link className="navigation-link" to="/about">About</Link>
                         </li>

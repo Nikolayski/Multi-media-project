@@ -33,6 +33,15 @@ namespace Web.Controllers
             return await this.carsService.GetRandomCollection();
         }
 
+        [HttpPost("/api/[controller]/search/")]
+        public async Task<IEnumerable<CarsAllViewModel>> Search(CarSearchViewModel carModel)
+        {
+            var cars = await this.carsService.GetCarsBySearch(carModel);
+            return cars;
+
+           
+        }
+
         [HttpGet("/api/[controller]/rup/{id}")]
         public async Task<int> GetRatingUp(string id)
         {

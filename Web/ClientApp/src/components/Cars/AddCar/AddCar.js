@@ -4,12 +4,18 @@ import authService from '../../api-authorization/AuthorizeService';
 import SelectManufacturer from '../SelectManufacturer';
 import '../../Edit/Edit.css';
 import * as services from '../../../Services/ComponentServices';
+import { Redirect } from 'react-router-dom';
 
 export class AddCar extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            IsLogged: false
         }
+    }
+    componentDidMount() {
+        authService.isAuthenticated()
+            .then(res => this.setState({IsLogged: res }))
     }
 
     inputOnChange(event) {
@@ -30,6 +36,9 @@ export class AddCar extends Component {
     }
 
     render() {
+        if (!this.state.IsLogged) {
+            return <Redirect to="/authentication/login" />
+        }
         return (
             <section className="car-form-wrapper">
                 <Car manufacturer={this.state.manufacturer} model={this.state.model} image={this.state.image} year={this.state.year} contact={this.state.contact} price={this.state.price} />

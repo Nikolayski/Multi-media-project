@@ -4,6 +4,7 @@ import Car from '../Cars/Car/Car';
 import axios from 'axios';
 import Blog from '../Blogs/Blog/Blog';
 import './Edit.css';
+import * as services from '../../Services/ComponentServices';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -16,24 +17,14 @@ export default class Edit extends Component {
 
     componentDidMount() {
         if (this.props.match.params.type == "car") {
-            fetch("https://localhost:44387/api/cars/" + this.props.match.params.id)
-                .then(res => res.json())
-                .then(data => {
-                    this.setState({
-                        car: data
-                    })
-                })
+            services.getDetails(this.props.match.params.id, "cars")
+                .then(data => this.setState({ car: data }))
                 .catch(error => console.log(error.message))
         }
 
         else {
-            fetch("https://localhost:44387/api/blogs/" + this.props.match.params.id)
-                .then(res => res.json())
-                .then(data => {
-                    this.setState({
-                        blog: data
-                    })
-                })
+            services.getDetails(this.props.match.params.id, "blogs")
+                .then(data =>  this.setState({blog: data}))
                 .catch(error => console.log(error.message))
         }
     }
@@ -50,9 +41,7 @@ export default class Edit extends Component {
    onInputBlogChange(event) {
         var currBlog = this.state.blog;
         currBlog[event.target.name] = event.target.value;
-        this.setState({
-            blog: currBlog
-        })
+        this.setState({blog: currBlog})
     }
 
    async handleEvent(event) {
