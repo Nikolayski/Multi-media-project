@@ -4,6 +4,7 @@ import SelectManufacturer from './SelectManufacturer';
 import { Link } from 'react-router-dom';
 import './Cars.css';
 import * as services from '../../Services/ComponentServices';
+import authService from '../api-authorization/AuthorizeService';
 
 export default class Cars extends Component {
     constructor(props) {
@@ -39,32 +40,40 @@ export default class Cars extends Component {
 
     formSearchHandler = (e) => {
         e.preventDefault();
+        authService.getUser().then(res => {
+            if (!res) {
+                this.props.history.push('/authentication/login')
+            }
+            else {
+                const car = {
+                    manufacturer: e.target.manufacturer.value,
+                    yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
+                    yearTo: e.target.yearTo.value ? e.target.yearTo.value : 2021,
+                    priceFrom: e.target.priceFrom.value ? e.target.priceFrom.value : 0,
+                    priceTo: e.target.priceTo.value ? e.target.priceTo.value : 200000,
+                };
 
-        const car = {
-            manufacturer: e.target.manufacturer.value,
-            yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
-            yearTo: e.target.yearTo.value ? e.target.yearTo.value : 2021,
-            priceFrom: e.target.priceFrom.value ? e.target.priceFrom.value : 0,
-            priceTo: e.target.priceTo.value ? e.target.priceTo.value : 200000,
-        };
+                fetch("https://localhost:44387/api/cars/search/", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(car)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.setState({ searchCars: data })
+                    })
+                    .catch(error => console.log(error.message))
 
-        fetch("https://localhost:44387/api/cars/search/", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(car)
+
+                e.target.manufacturer.value = '';
+                e.target.yearFrom.value = '';
+                e.target.yearTo.value = '';
+                e.target.priceFrom.value = '';
+                e.target.priceTo.value = '';
+            }
+
         })
-            .then(res => res.json())
-            .then(data => {
-                this.setState({ searchCars: data })
-            })
-            .catch(error => console.log(error.message))
-
-
-        e.target.manufacturer.value = '';
-        e.target.yearFrom.value = '';
-        e.target.yearTo.value = '';
-        e.target.priceFrom.value = '';
-        e.target.priceTo.value = '';
+      
     }
 
     render() {

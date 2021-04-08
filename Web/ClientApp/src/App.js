@@ -8,7 +8,7 @@ import { ApplicationPaths } from './components/api-authorization/ApiAuthorizatio
 
 import './custom.css'
 import Cars from './components/Cars/Cars';
-import { AddCar } from './components/Cars/AddCar/AddCar';
+import  AddCar  from './components/Cars/AddCar/AddCar';
 import Blogs from './components/Blogs/Blogs';
 import AddBlog from './components/Blogs/AddBlog/AddBlog';
 import BlogDetails from './components/Blogs/BlogDetails/BlogDetails';

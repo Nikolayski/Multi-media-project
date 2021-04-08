@@ -1,6 +1,6 @@
 ﻿.weather-form {
     max-width: 20%;
-    margin: auto;
+    margin: 25px auto;
     display: flex;
     justify-content: space-around;
     padding-bottom: 10px;

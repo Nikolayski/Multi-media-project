@@ -24,6 +24,9 @@ export default class MyBlogs extends Component {
     }
 
     render() {
+        if (this.state.blogs.length == 0) {
+            return <h2>No blogs available</h2>
+        }
         return (
             <article className="blog-card-wrapper">
                 {this.state.blogs.map(x => (

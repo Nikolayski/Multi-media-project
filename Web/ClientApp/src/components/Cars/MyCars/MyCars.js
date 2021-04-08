@@ -25,6 +25,9 @@ export default class MyCars extends Component {
     }
 
     render() {
+        if (this.state.cars.length==0) {
+            return <h2>No cars available</h2>
+        }
         return (
             <div>
                 <section className="car-card-wrapper">

@@ -25,27 +25,26 @@ export default class Nav extends Component {
                     </article>
                     <ul className="navigation">
                         <li className="navigation-item">
-                            <NavLink className="navigation-link" to="/" >Home</NavLink>
+                            <NavLink activeClassName="navlink-active" className="navigation-link" exact={true} to="/">Home</NavLink>
                         </li>
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/cars">Cars</Link>
+                            <NavLink activeClassName="navlink-active" className="navigation-link" exact={true}   to="/cars" >Cars</NavLink>
                         </li>
-
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/blogs" >Blogs</Link>
+                            <NavLink activeClassName="navlink-active" className="navigation-link" exact={true}   to="/blogs">Blogs</NavLink>
                         </li>
                         {this.state.IsLogged ? <li className="navigation-item hiddens">
                             <button className="navigation-item-btn">Collections <i className="fa fa-caret-down"></i></button>
                             <div className="navigation-item-links">
-                                <Link className="navigation-item-links-link" to="/myBlogs">My Blogs</Link>
-                                <Link className="navigation-item-links-link" to="/myCars">My Cars</Link>
+                                <Link className="navigation-item-links-link"   to="/myBlogs">My Blogs</Link>
+                                <Link className="navigation-item-links-link"   to="/myCars">My Cars</Link>
                             </div>
                         </li> : ''}
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/about">About</Link>
+                            <NavLink activeClassName="navlink-active" className="navigation-link" exact={true}   to="/about">About</NavLink>
                         </li>
                         <li className="navigation-item">
-                            <Link className="navigation-link" to="/contact">Contact</Link>
+                            <NavLink activeClassName="navlink-active" className="navigation-link" exact={true}   to="/contact">Contact</NavLink>
                         </li>
                         <LoginMenu></LoginMenu>
                     </ul>

@@ -34,9 +34,9 @@ namespace Web.Controllers
         }
 
         [HttpPost("/api/[controller]/search/")]
-        public async Task<IEnumerable<CarsAllViewModel>> Search(CarSearchViewModel carModel)
+        public async Task<IEnumerable<CarsAllViewModel>> Search(CarSearchViewModel car)
         {
-            var cars = await this.carsService.GetCarsBySearch(carModel);
+            var cars = await this.carsService.GetCarsBySearch(car);
             return cars;
 
            
@@ -63,6 +63,7 @@ namespace Web.Controllers
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> Post(CarViewModel car)
         {
+            ;
             if (!this.ModelState.IsValid)
             {
                 return NotFound("Invalid data!!!");

@@ -16,14 +16,17 @@
     color: whitesmoke;
 }
 
+.field-validation{
+    color:red;
+}
 
 .select-manufacturer {
     border: none;
     background: transparent;
     box-shadow: 0px 0px 8px 5px lightgrey;
-    color:lightgray;
+    color: lightgray;
     border-radius: 12px;
-    padding:5px;
+    padding: 5px;
 }
 
 .select-manufacturer option{
