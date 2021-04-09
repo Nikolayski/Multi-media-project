@@ -1,6 +1,6 @@
 ﻿
 .footer-wrapper {
-    background: rgb(150, 191, 245);
+    background: rgba(50, 191, 245, 0.2);
     position:fixed;
     bottom:0;
     width:100%;
