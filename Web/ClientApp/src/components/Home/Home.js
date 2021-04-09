@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import RandomElements from './RandomElements/RandomElements';
 import HomeContext from '../Contexts/HomeContext';
 import './Home.css';
-import authService from '../api-authorization/AuthorizeService';
-import Slide from './Slide';
+import Slide from '../Slide/Slide';
 
 
 const Home = (props) => {
@@ -11,6 +10,7 @@ const Home = (props) => {
         name: 'blogs',
         detailsPath: 'blogDetails'
     });
+
     const [cars, SetCars] = useState({
         name: 'cars',
         detailsPath: 'carDetails'

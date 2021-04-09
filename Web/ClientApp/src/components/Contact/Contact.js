@@ -1,8 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import HomeContext from '../Contexts/HomeContext';
 import RandomElements from '../Home/RandomElements/RandomElements';
-import Slide from '../Home/Slide';
+import Slide from '../Slide/Slide';
 import './Contact.css';
 
 

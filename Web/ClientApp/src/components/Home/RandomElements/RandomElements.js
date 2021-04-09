@@ -8,10 +8,12 @@ const RandomElements = (props) => {
     const [randomCollection, SetRandomCollection] = useState([]);
     const homeContext = useContext(HomeContext);
 
+
     useEffect(() => {
         fetch(`https://localhost:44387/api/${homeContext.name}/randomCollection`)
             .then(res => res.json())
             .then(data => SetRandomCollection(data))
+            .catch(err => console.log(err.message))
     }, [])
 
     return (

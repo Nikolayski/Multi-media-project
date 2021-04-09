@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import './BlogDetails.css';
 import * as services from '../../../Services/ComponentServices';
 

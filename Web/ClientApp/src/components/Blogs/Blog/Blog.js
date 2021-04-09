@@ -1,7 +1,5 @@
-﻿import { error } from 'jquery';
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import BlogDetails from '../BlogDetails/BlogDetails';
 import '../Blogs.css';
 import * as services from '../../../Services/ComponentServices';
 
@@ -28,7 +26,7 @@ export default class Blog extends Component {
             return (
                 <section className="blog-card">
                     <h4 className="blog-card-theme">{this.props.theme}</h4>
-                    <img className="blog-card-image" src={this.props.image}></img>
+                    <img className="blog-card-image" src={this.props.image} alt={'blog image'}></img>
                     <p className="blog-card-title">{this.props.title}</p>
                     <p className="blog-card-description">{this.props.desc}</p>
                     <p className="blog-card-description">{this.props.creator}</p>

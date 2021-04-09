@@ -34,6 +34,16 @@ export const create = (state, collectionPath) => {
         .catch(err => console.log(err.message));
 }
 
+export const search = (obj, collectionPath) => {
+    return fetch(`https://localhost:44387/api/${collectionPath}/search/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    })
+        .then(res => res.json())
+        .catch(err => console.log(err.message));
+}
+
 export const rateUp = (id) => {
     return fetch('https://localhost:44387/api/cars/rup/' + id)
         .then(response => response.json())

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Enums;
 using Services;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -87,9 +89,10 @@ namespace Web.Controllers
         [HttpGet("/api/[controller]/get/{manufacturer}")]
         public async Task<IEnumerable<CarsAllViewModel>> GetCarsByManufacturer(string manufacturer)
         {
-            var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
-            var user = this.User;
-            return cars;
+                var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
+                var user = this.User;
+                return cars;
+           
         }
 
         [HttpGet("/api/[controller]/my-cars/{id}")]

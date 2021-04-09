@@ -2,9 +2,8 @@
 import Car from '../Car/Car';
 import authService from '../../api-authorization/AuthorizeService';
 import SelectManufacturer from '../SelectManufacturer';
-import '../../Edit/Edit.css';
 import * as services from '../../../Services/ComponentServices';
-
+import './AddCar.css';
 
 export default class AddCar extends Component {
 

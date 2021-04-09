@@ -4,22 +4,29 @@ import SelectManufacturer from './SelectManufacturer';
 import { Link } from 'react-router-dom';
 import './Cars.css';
 import * as services from '../../Services/ComponentServices';
-import authService from '../api-authorization/AuthorizeService';
 
 export default class Cars extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            manufacturers: [
+                'alfaRomeo', 'audi', 'bentley', 'bmw', 'bugatti', 'cadillac', 'chevrolet', 'citroen', 'dacia',
+                'fiat', 'ford', 'jeep', 'kia', 'lada', 'lexus', 'maserati', 'maybach', 'mazda', 'mcLaren', 'mercedes',
+                'mitsubishi', 'nissan', 'opel', 'peugeot', 'renault', 'rover', 'saab', 'seat', 'smart', 'skoda', 'tesla',
+                'toyota', 'volkswagen', 'volvo'
+            ],
+            manufacturerError: '',
             cars: [],
-            searchCars: []
+            searchCars: [],
         }
     }
 
+
     componentDidMount() {
         if (this.state.searchCars.length == 0) {
-            services.getAll("cars")
+            services.getAll(`${this.props.match.path.slice(1, this.props.match.path.length)}`)
                 .then(data => this.setState({ cars: data }))
-                .catch(error => console.log(error.message))
+                .catch(error => console.log('ERRRORRRR from Cars'))
         }
     }
 
@@ -31,7 +38,7 @@ export default class Cars extends Component {
             }
             else {
                 this.setState({ cars: [] })
-                services.getOption(event.target.value, "cars")
+                services.getOption(event.target.value, this.props.match.path.slice(1, this.props.match.path.length))
                     .then(data => this.setState({ cars: data }))
                     .catch(error => console.log(error.message))
             }
@@ -40,37 +47,30 @@ export default class Cars extends Component {
 
     formSearchHandler = (e) => {
         e.preventDefault();
-        //authService.getUser().then(res => {
-        //    if (!res) {
-        //        this.props.history.push('/authentication/login')
-        //    }
-            //else {
-                const car = {
-                    manufacturer: e.target.manufacturer.value,
-                    yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
-                    yearTo: e.target.yearTo.value ? e.target.yearTo.value : 2021,
-                    priceFrom: e.target.priceFrom.value ? e.target.priceFrom.value : 0,
-                    priceTo: e.target.priceTo.value ? e.target.priceTo.value : 200000,
-                };
+        var IsValid = this.state.manufacturers.includes(e.target.manufacturer.value.toLowerCase())
+        if (IsValid) {
+            const car = {
+                manufacturer: e.target.manufacturer.value,
+                yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
+                yearTo: e.target.yearTo.value ? e.target.yearTo.value : 2021,
+                priceFrom: e.target.priceFrom.value ? e.target.priceFrom.value : 0,
+                priceTo: e.target.priceTo.value ? e.target.priceTo.value : 200000,
+            };
 
-                fetch("https://localhost:44387/api/cars/search/", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(car)
-                })
-                    .then(res => res.json())
-                    .then(data => this.setState({ searchCars: data }))
-                    .catch(error => console.log(error.message))
+            services.search(car, this.props.match.path.slice(1, this.props.match.path.length))
+                .then(data => this.setState({ searchCars: data }))
+                .catch(error => this.setState({ message: 'Invalid data' }))
 
-
-                e.target.manufacturer.value = '';
-                e.target.yearFrom.value = '';
-                e.target.yearTo.value = '';
-                e.target.priceFrom.value = '';
-                e.target.priceTo.value = '';
-            //}
-
-        //})
+            e.target.manufacturer.value = '';
+            e.target.yearFrom.value = '';
+            e.target.yearTo.value = '';
+            e.target.priceFrom.value = '';
+            e.target.priceTo.value = '';
+            this.setState({ manufacturerError: '' });
+        }
+        else {
+            this.setState({ manufacturerError: 'Invalid manufacturer!' })
+        }
 
     }
 
@@ -92,13 +92,27 @@ export default class Cars extends Component {
                     <Link className="addcar-button" to="/addCar">Add Car</Link>
                 </div>
                 <form className="car-search" onSubmit={this.formSearchHandler.bind(this)}>
-                    <input type="text" placeholder="Manufacturer" name="manufacturer" />
-                    <input type="number" placeholder="Year from" name="yearFrom" />
-                    <input type="number" placeholder="Year to" name="yearTo" />
-                    <input type="number " placeholder="Price from" name="priceFrom" />
-                    <input type="number " placeholder="Price to" name="priceTo" />
-                    <input type="submit" value="Search" />
+                    <div>
+                        <input type="text" placeholder="Manufacturer" name="manufacturer" />
+                        <span style={{ color: 'red', fontWeight: 'bold' }}>{this.state.manufacturerError}</span>
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Year from" name="yearFrom" />
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Year to" name="yearTo" />
+                    </div>
+                    <div>
+                        <input type="number " placeholder="Price from" name="priceFrom" />
+                    </div >
+                    <div>
+                        <input type="number " placeholder="Price to" name="priceTo" />
+                    </div >
+                    <div>
+                        <input type="submit" value="Search" />
+                    </div >
                 </form>
+
                 <section className="car-card-wrapper">
                     {this.state.searchCars.length != 0 ? this.state.searchCars.map(x => (
                         <Car key={x.id}

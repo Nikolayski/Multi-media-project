@@ -2,8 +2,6 @@
 import authService from '../api-authorization/AuthorizeService';
 import Car from '../Cars/Car/Car';
 import axios from 'axios';
-import Blog from '../Blogs/Blog/Blog';
-import './Edit.css';
 import * as services from '../../Services/ComponentServices';
 
 export default class Edit extends Component {

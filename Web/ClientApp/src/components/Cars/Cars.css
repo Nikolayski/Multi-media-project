@@ -1,4 +1,4 @@
-﻿.car-card-wrapper{
+﻿.car-card-wrapper {
     max-width: 80%;
     display: flex;
     flex-wrap: wrap;
@@ -9,15 +9,15 @@
     border: 1px solid;
     display: inline-flex;
     padding: 2px 20px;
-    margin-left:20px;
+    margin-left: 20px;
     font-size: 18px;
     border-radius: 12px;
     box-shadow: 0px 0px 8px 5px lightgrey;
     color: whitesmoke;
 }
 
-.field-validation{
-    color:red;
+.field-validation {
+    color: red;
 }
 
 .select-manufacturer {
@@ -29,16 +29,38 @@
     padding: 5px;
 }
 
-.select-manufacturer option{
-   background: rgb(100, 190, 200);
+.select-manufacturer option {
+        background: rgb(100, 190, 200);
 }
 
 .no-cars-manufacturer {
     display: flex;
     justify-content: center;
-    margin-top:30px;    
+    margin-top: 30px;
 }
 
 .no-cars-message {
     margin-right: 20px;
+}
+
+.car-search {
+    max-width: 80%;
+    margin: 30px auto;
+    display: flex;
+}
+
+.car-search div {
+        width: 15%;
+}
+
+.car-search input {
+        background: transparent;
+        box-shadow: 0px 0px 8px 5px lightgrey;
+        border: 3px solid lightgrey;
+        padding: 5px;
+        border-radius: 10px;
+}
+
+.car-search input:last-child {
+            color: white;
 }

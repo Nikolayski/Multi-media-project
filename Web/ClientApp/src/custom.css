@@ -25,23 +25,7 @@ code {
     margin-top:20px;
 }
 
-.car-search{
-    max-width:60%;
-    margin:30px auto;
-}
 
-.car-search input {
-    background: transparent;
-    box-shadow: 0px 0px 8px 5px lightgrey;
-    border: 3px solid lightgrey;
-    padding:5px;
-    width:15%;
-    border-radius:10px;
-}
-
-.car-search input:last-child{
-    color:white;
-}
 
 .slider-wrapper{
    max-width: 90%;

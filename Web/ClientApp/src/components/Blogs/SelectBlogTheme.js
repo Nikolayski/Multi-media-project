@@ -8,7 +8,7 @@ export default class SelectBlogTheme extends Component {
     render() {
         return (
             <select className="select-theme" onChange={this.props.change}>
-                <option value="ERROR">Choose your theme</option>
+                <option value="ERROR">Search theme...</option>
                 <option value="photography">Photography</option>
                 <option value="sports">Sports</option>
                 <option value="movies">Movies</option>

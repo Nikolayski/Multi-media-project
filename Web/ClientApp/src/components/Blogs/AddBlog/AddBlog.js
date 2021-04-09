@@ -1,9 +1,7 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import authService from '../../api-authorization/AuthorizeService';
-import '../../Edit/Edit.css';
 import * as services from '../../../Services/ComponentServices';
-import { Redirect } from 'react-router-dom';
+import './AddBlog.css';
 
 export default class AddBlog extends Component {
     constructor(props) {

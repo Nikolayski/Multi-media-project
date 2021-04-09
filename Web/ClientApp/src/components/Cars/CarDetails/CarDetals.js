@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import authService from '../../api-authorization/AuthorizeService';
 import './CarDetails.css';
 import * as services from '../../../Services/ComponentServices';
 
