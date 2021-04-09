@@ -1,35 +1,28 @@
-﻿using Models.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-  public  class Blog
+    public class Comment
     {
-        public Blog()
+        public Comment()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.CarComments = new HashSet<CarComments>();
             this.BlogComments = new HashSet<BlogComments>();
         }
         public string Id { get; set; }
 
-        public virtual Theme Theme{ get; set; }
+        [Required]
+        public string Message { get; set; }
 
         [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public string Description { get; set; }
-
-        [Required]
-        public string ImageUrl { get; set; }
-
         public string CreatorId { get; set; }
-
         public virtual ApplicationUser Creator { get; set; }
 
-        public virtual ICollection<BlogComments> BlogComments { get; set; }
 
+        public virtual ICollection<CarComments> CarComments{ get; set; }
+        public virtual ICollection<BlogComments> BlogComments { get; set; }
     }
 }

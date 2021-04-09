@@ -1,0 +1,11 @@
+﻿
+.addblog-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    margin: 50px auto;
+}
+
+    .addblog-wrapper * {
+        padding: 10px;
+    }

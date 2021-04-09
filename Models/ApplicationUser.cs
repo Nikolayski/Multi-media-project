@@ -11,10 +11,13 @@ namespace Models
             this.Id = Guid.NewGuid().ToString();
             this.Cars = new HashSet<Car>();
             this.Blogs = new HashSet<Blog>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public virtual ICollection<Car> Cars{ get; set; }
 
         public virtual ICollection<Blog> Blogs{ get; set; }
+
+        public virtual ICollection<Comment> Comments{ get; set; }
     }
 }

@@ -38,6 +38,7 @@ namespace Web.Controllers
         [HttpPost("/api/[controller]/search/")]
         public async Task<IEnumerable<CarsAllViewModel>> Search(CarSearchViewModel car)
         {
+            ;
             var cars = await this.carsService.GetCarsBySearch(car);
             return cars;
 

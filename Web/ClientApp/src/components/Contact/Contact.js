@@ -56,8 +56,8 @@ const Contact = (props) => {
 
             <section className="contact-wrapper">
                 <div className="contact-image">
-                    <img src="https://fixmyridedubai.com/wp-content/uploads/2020/12/FixMyRide-Dubai-contact-us.jpg" />
-                    <img src="https://www.cubecraft.net/attachments/website_banner_ihaveaquestion-jpg.49912/" />
+                    <img src="https://images.squarespace-cdn.com/content/v1/58dde926b3db2b553c5f31b1/1492659315840-JMRKQW032HV4HQB39Q09/ke17ZwdGBToddI8pDm48kKgDrtn_55aqdjP2-IQUKhoUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dmdpTJmnqGIvC9JsoIYp60ceBjQWFa67DaOqgKIK7l6DCjLISwBs8eEdxAxTptZAUg/contact+us+colorful.png?format=2500w" />
+                    <img src="https://www.hillsidebible.org/uploads/6/3/0/6/63067077/any-questions-orig_orig.png" />
 
                 </div>
                 <form onSubmit={formSubmit}>

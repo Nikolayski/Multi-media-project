@@ -1,0 +1,23 @@
+﻿.car-form-wrapper {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.car-form {
+    max-width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .car-form input,
+    .car-form button {
+        background: transparent;
+        box-shadow: 0px 0px 8px 5px lightgrey;
+        border: 3px solid lightgrey;
+    }
+
+.car-items * {
+    display: block;
+}
+

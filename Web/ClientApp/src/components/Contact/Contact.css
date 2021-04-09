@@ -3,7 +3,8 @@
     max-width: 80%;
     margin: 40px auto 100px auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items:center;
 }
 
 
@@ -54,7 +55,8 @@
 
 
 .field-button {
-    margin-top: 16px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .field-button input{

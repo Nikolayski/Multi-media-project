@@ -5,18 +5,16 @@ import  Home   from './components/Home/Home';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
-
 import './custom.css'
 import Cars from './components/Cars/Cars';
 import  AddCar  from './components/Cars/AddCar/AddCar';
 import Blogs from './components/Blogs/Blogs';
 import AddBlog from './components/Blogs/AddBlog/AddBlog';
-import BlogDetails from './components/Blogs/BlogDetails/BlogDetails';
-import CarDetails from './components/Cars/CarDetails/CarDetals';    
 import Edit from './components/Edit/Edit';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import MyCollection from './components/MyCollection/MyCollection';
+import Details from './components/Details/Details';
 
 export default class App extends Component {
 
@@ -29,12 +27,12 @@ export default class App extends Component {
                     <Route exact path='/contact' component={Contact} />
                     <Route exact path='/cars' component={Cars} />
                     <Route exact path='/addCar' component={AddCar} />
-                    <Route exact path='/carDetails/:id' component={CarDetails} />
+                    <Route  key={'carDetals' } path='/carDetails/:id' component={Details} />
+                    <Route  key={'blogDetals'} path='/blogDetails/:id' component={Details} />
                     <Route exact path='/blogs' component={Blogs} />
                     <Route exact path='/addBlog' component={AddBlog} />
                     <Route key={'carsCollection' } path='/myBlogs' component={MyCollection} />
                     <Route key={'blogsCollection'}  path='/myCars'component={MyCollection} />
-                    <Route exact path='/blogDetails/:id' component={BlogDetails} />
                     <Route exact path='/edit/:type/:id' component={Edit} />
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                 </Switch>

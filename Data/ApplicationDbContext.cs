@@ -15,7 +15,12 @@ namespace Data
         }
 
         public DbSet<Car>  Cars{ get; set; }
+
         public DbSet<Blog>  Blogs{ get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<CarComments> CarComments { get; set; }
+        public DbSet<BlogComments> BlogComments { get; set; }
 
         public DbSet<Contact>  Contacts{ get; set; }
     }

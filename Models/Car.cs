@@ -1,6 +1,7 @@
 ﻿
 using Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -10,6 +11,7 @@ namespace Models
         public Car()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.CarComments = new HashSet<CarComments>();
         }
         public string Id { get; set; }
 
@@ -38,5 +40,7 @@ namespace Models
         public string OwnerId { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
+
+        public virtual ICollection<CarComments> CarComments { get; set; }
     }
 }

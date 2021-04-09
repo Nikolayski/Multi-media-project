@@ -10,7 +10,7 @@ export default class Cars extends Component {
         super(props);
         this.state = {
             manufacturers: [
-                'alfaRomeo', 'audi', 'bentley', 'bmw', 'bugatti', 'cadillac', 'chevrolet', 'citroen', 'dacia',
+                'alfaromeo', 'audi', 'bentley', 'bmw', 'bugatti', 'cadillac', 'chevrolet', 'citroen', 'dacia',
                 'fiat', 'ford', 'jeep', 'kia', 'lada', 'lexus', 'maserati', 'maybach', 'mazda', 'mcLaren', 'mercedes',
                 'mitsubishi', 'nissan', 'opel', 'peugeot', 'renault', 'rover', 'saab', 'seat', 'smart', 'skoda', 'tesla',
                 'toyota', 'volkswagen', 'volvo'
@@ -26,7 +26,7 @@ export default class Cars extends Component {
         if (this.state.searchCars.length == 0) {
             services.getAll(`${this.props.match.path.slice(1, this.props.match.path.length)}`)
                 .then(data => this.setState({ cars: data }))
-                .catch(error => console.log('ERRRORRRR from Cars'))
+                .catch(error => console.log(error.message))
         }
     }
 
@@ -51,7 +51,7 @@ export default class Cars extends Component {
         if (IsValid) {
             const car = {
                 manufacturer: e.target.manufacturer.value,
-                yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
+                yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 0,
                 yearTo: e.target.yearTo.value ? e.target.yearTo.value : 2021,
                 priceFrom: e.target.priceFrom.value ? e.target.priceFrom.value : 0,
                 priceTo: e.target.priceTo.value ? e.target.priceTo.value : 200000,
@@ -60,6 +60,7 @@ export default class Cars extends Component {
             services.search(car, this.props.match.path.slice(1, this.props.match.path.length))
                 .then(data => this.setState({ searchCars: data }))
                 .catch(error => this.setState({ message: 'Invalid data' }))
+
 
             e.target.manufacturer.value = '';
             e.target.yearFrom.value = '';
