@@ -66,7 +66,7 @@ export default class Details extends Component {
     }
 
     render() {
-        if (this.state.manufacturer) {
+        if (this.state.result.manufacturer) {
             return (
                 <section className="car-details-container">
                     <div className="car-details-wrapper">
