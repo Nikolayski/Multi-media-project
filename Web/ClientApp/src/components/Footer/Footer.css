@@ -1,0 +1,21 @@
+﻿
+.footer-wrapper {
+    background: rgb(150, 191, 245);
+    position:fixed;
+    bottom:0;
+    width:100%;
+    z-index:5;
+    height:90px;
+    padding:10px;
+    display:flex;
+    justify-content:space-around;
+}
+
+.footer-wrapper li{
+    list-style:none;
+}
+
+.footer-navigation span{
+    color:whitesmoke;
+}
+

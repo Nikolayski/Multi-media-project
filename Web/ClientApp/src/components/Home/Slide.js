@@ -10,7 +10,7 @@ const Slide = (props) => {
    
     return (
         <div className="slider-wrapper">
-            <SwiftSlider data={data} height={props.height} interval={2000 }/>
+            <SwiftSlider data={data} height={props.height} interval={2000} enableNextAndPrev={ false} />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 ﻿
 .contact-wrapper {
     max-width: 80%;
-    margin: 40px auto;
+    margin: 40px auto 100px auto;
     display: flex;
     justify-content: space-around;
 }

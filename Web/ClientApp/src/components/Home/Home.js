@@ -29,9 +29,9 @@ const Home = (props) => {
                 <HomeContext.Provider value={cars}>
                     <RandomElements />
                 </HomeContext.Provider>
-
             </div>
             <Slide images={slideImages} height={700 }/>
+
         </>
     )
 }

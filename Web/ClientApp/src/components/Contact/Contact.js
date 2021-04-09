@@ -12,8 +12,8 @@ const Contact = (props) => {
     const [message, SetMessage] = useState('');
 
     const slideImages = [
-        'https://cdn11.bigcommerce.com/s-t2pg2ul4dc/product_images/uploaded_images/contact-us-via-phone-email.jpg',
         'https://hedreezblog.com/wp-content/uploads/2020/04/Contact.png',
+        'https://cdn11.bigcommerce.com/s-t2pg2ul4dc/product_images/uploaded_images/contact-us-via-phone-email.jpg',
         'https://www.cloudways.com/blog/wp-content/uploads/Trending-products-to-sell-1.jpg'
     ]
 
