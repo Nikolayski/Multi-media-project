@@ -13,6 +13,13 @@ export default class AddBlog extends Component {
             errors: {}
         }
     }
+    componentWillMount() {
+        authService.getUser().then(res => {
+            if (!res) {
+                this.props.history.push('/authentication/login')
+            }
+        })
+    }
 
     validation() {
         if (this.state.errors.themeError === '' && this.state.errors.titleError === ''
@@ -28,7 +35,7 @@ export default class AddBlog extends Component {
             currBlog[event.target.name] = event.target.value;
             this.setState({ blog: currBlog })
         }
-    
+
     }
 
     sendData(e) {
@@ -37,30 +44,24 @@ export default class AddBlog extends Component {
 
         this.setState({
             errors: {
-                themeError: theme.value && theme.value !='ERROR' ? '' : 'Invalid theme',
+                themeError: theme.value && theme.value != 'ERROR' ? '' : 'Invalid theme',
                 titleError: title.value ? '' : 'Invalid title',
-               descriptionError: description.value ? '' : 'Invalid description',
-               imageError: image.value ? '' : 'Invalid image',
+                descriptionError: description.value ? '' : 'Invalid description',
+                imageError: image.value ? '' : 'Invalid image',
             }
         })
         if (this.validation()) {
             authService.getUser().then(response => {
-                if (!response) {
-                    this.props.history.push('/authentication/login')
-                }
-                else {
-                    this.setState(prevState => ({ ...prevState, blog: { ...prevState.blog, userId: response.sub } }))
-                    services.create(this.state.blog, "blogs")
-                        .then(data => this.props.history.push("/blogs"))
-                        .catch(error => console.log(error.message))
-                }
-
+                this.setState(prevState => ({ ...prevState, blog: { ...prevState.blog, userId: response.sub } }))
+                services.create(this.state.blog, "blogs")
+                    .then(data => this.props.history.push("/blogs"))
+                    .catch(error => console.log(error.message))
             })
         }
-       
+
     }
 
-    render() {   
+    render() {
         return (
             <form onSubmit={this.sendData.bind(this)}>
                 <article className="addblog-wrapper">

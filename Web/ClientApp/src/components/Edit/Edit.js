@@ -9,50 +9,32 @@ import * as services from '../../Services/ComponentServices';
 export default class Edit extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            car: {},
-            blog: {},
-        }
+        this.state = {}
     }
 
     componentDidMount() {
-        if (this.props.match.params.type == "car") {
-            services.getDetails(this.props.match.params.id, "cars")
-                .then(data => this.setState({ car: data }))
-                .catch(error => console.log(error.message))
-        }
+        services.getDetails(this.props.match.params.id, this.props.match.params.type)
+            .then(data => this.setState(data))
+            .catch(error => console.log(error.message))
 
-        else {
-            services.getDetails(this.props.match.params.id, "blogs")
-                .then(data =>  this.setState({blog: data}))
-                .catch(error => console.log(error.message))
-        }
     }
 
     inputOnChange(event) {
-        var currCar = this.state.car;
-        currCar[event.target.name] = event.target.value;
-
-        this.setState({
-            car: currCar
-        })
+        var currState = this.state;
+        currState[event.target.name] = event.target.value;
+        this.setState({ currState });
     }
 
-   onInputBlogChange(event) {
-        var currBlog = this.state.blog;
-        currBlog[event.target.name] = event.target.value;
-        this.setState({blog: currBlog})
-    }
 
-   async handleEvent(event) {
+    async handleEvent(event) {
         event.preventDefault();
         const token = await authService.getAccessToken();
-        const data = this.state.car;
-        axios.post('/api/cars/edit/', data, {
+        const data = this.state;
+        axios.post(`/api/${this.props.match.params.type}/edit/`, data, {
             headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
         })
             .then(response => {
-                this.props.history.push("/myCars")
+                this.props.history.push(`/my${this.props.match.params.type}`)
 
             })
             .catch(error => {
@@ -60,34 +42,19 @@ export default class Edit extends Component {
             })
     }
 
-    async sendData(event) {
-        event.preventDefault();
-        const token = await authService.getAccessToken();
-        const data = this.state.blog;
-        axios.post('/api/blogs/edit', data, {
-            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
-        })
-            .then(response => {
-                this.props.history.push("/myBlogs")
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
-    }
-
-   render() {
-        if (this.props.match.params.type == "car") {
+    render() {
+        if (this.props.match.params.type == "cars") {
             return (
                 <section className="car-form-wrapper">
-                    <Car manufacturer={this.state.car.manufacturer} model={this.state.car.model} image={this.state.car.image} year={this.state.car.year} contact={this.state.car.contact} price={this.state.car.price} />
+                    <Car manufacturer={this.state.manufacturer} model={this.state.model} image={this.state.image} year={this.state.year} contact={this.state.contact} price={this.state.price} />
                     <div className="car-form">
                         <form className="car-items" onSubmit={this.handleEvent.bind(this)}>
-                            <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Model" name="model" defaultValue={this.state.car.model} />
-                            <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Image Url" name="image" defaultValue={this.state.car.image} />
-                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Year" name="year" defaultValue={this.state.car.year} />
-                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Price" name="price" defaultValue={this.state.car.price} />
-                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Phone Contact" name="contact" defaultValue={this.state.car.contact} />
-                            <textarea onChange={this.inputOnChange.bind(this)} type="text" placeholder="Info" name="info" defaultValue={this.state.car.info}></textarea>
+                            <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Model" name="model" defaultValue={this.state.model} />
+                            <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Image Url" name="image" defaultValue={this.state.image} />
+                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Year" name="year" defaultValue={this.state.year} />
+                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Price" name="price" defaultValue={this.state.price} />
+                            <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Phone Contact" name="contact" defaultValue={this.state.contact} />
+                            <textarea onChange={this.inputOnChange.bind(this)} type="text" placeholder="Info" name="info" defaultValue={this.state.info}></textarea>
                             <button type="submit">Add</button>
                         </form>
                     </div>
@@ -95,17 +62,15 @@ export default class Edit extends Component {
             )
         }
 
-        else {
-            return (
-                <form onSubmit={this.sendData.bind(this)}>
-                    <article className="addblog-wrapper">
-                        <input onChange={this.onInputBlogChange.bind(this)} type="text" placeholder="Title" name="title" defaultValue={this.state.blog.title} />
-                        <textarea onChange={this.onInputBlogChange.bind(this)} rows="20" type="text" placeholder="Description" name="description" defaultValue={this.state.blog.description} ></textarea>
-                        <input onChange={this.onInputBlogChange.bind(this)} type="text" placeholder="Image Url" name="image" defaultValue={this.state.blog.image} />
-                        <button type="submit">DONE</button>
-                    </article>
-                </form>
-            )
-        }
+        return (
+            <form onSubmit={this.handleEvent.bind(this)}>
+                <article className="addblog-wrapper">
+                    <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Title" name="title" defaultValue={this.state.title} />
+                    <textarea onChange={this.inputOnChange.bind(this)} rows="20" type="text" placeholder="Description" name="description" defaultValue={this.state.description} ></textarea>
+                    <input onChange={this.inputOnChange.bind(this)} type="text" placeholder="Image Url" name="image" defaultValue={this.state.image} />
+                    <button type="submit">DONE</button>
+                </article>
+            </form>
+        )
     }
 }

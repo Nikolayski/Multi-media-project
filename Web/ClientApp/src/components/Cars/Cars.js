@@ -16,17 +16,17 @@ export default class Cars extends Component {
     }
 
     componentDidMount() {
-        if (this.state.searchCars.length==0) {
+        if (this.state.searchCars.length == 0) {
             services.getAll("cars")
                 .then(data => this.setState({ cars: data }))
                 .catch(error => console.log(error.message))
-        }     
+        }
     }
 
     getManufacturer(event) {
         if (event.target.value != "error") {
             if (event.target.value == "all") {
-                this.setState({searchCars: []})
+                this.setState({ searchCars: [] })
                 this.componentDidMount();
             }
             else {
@@ -36,15 +36,15 @@ export default class Cars extends Component {
                     .catch(error => console.log(error.message))
             }
         }
-           }
+    }
 
     formSearchHandler = (e) => {
         e.preventDefault();
-        authService.getUser().then(res => {
-            if (!res) {
-                this.props.history.push('/authentication/login')
-            }
-            else {
+        //authService.getUser().then(res => {
+        //    if (!res) {
+        //        this.props.history.push('/authentication/login')
+        //    }
+            //else {
                 const car = {
                     manufacturer: e.target.manufacturer.value,
                     yearFrom: e.target.yearFrom.value ? e.target.yearFrom.value : 1950,
@@ -59,9 +59,7 @@ export default class Cars extends Component {
                     body: JSON.stringify(car)
                 })
                     .then(res => res.json())
-                    .then(data => {
-                        this.setState({ searchCars: data })
-                    })
+                    .then(data => this.setState({ searchCars: data }))
                     .catch(error => console.log(error.message))
 
 
@@ -70,10 +68,10 @@ export default class Cars extends Component {
                 e.target.yearTo.value = '';
                 e.target.priceFrom.value = '';
                 e.target.priceTo.value = '';
-            }
+            //}
 
-        })
-      
+        //})
+
     }
 
     render() {
@@ -102,7 +100,7 @@ export default class Cars extends Component {
                     <input type="submit" value="Search" />
                 </form>
                 <section className="car-card-wrapper">
-                    {this.state.searchCars.length!=0 ? this.state.searchCars.map(x => (
+                    {this.state.searchCars.length != 0 ? this.state.searchCars.map(x => (
                         <Car key={x.id}
                             id={x.id}
                             manufacturer={x.manufacturer}

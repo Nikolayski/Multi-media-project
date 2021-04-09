@@ -4,8 +4,7 @@ import authService from '../../api-authorization/AuthorizeService';
 import SelectManufacturer from '../SelectManufacturer';
 import '../../Edit/Edit.css';
 import * as services from '../../../Services/ComponentServices';
-import { Redirect } from 'react-router-dom';
-import { render } from 'react-dom';
+
 
 export default class AddCar extends Component {
 
@@ -15,6 +14,14 @@ export default class AddCar extends Component {
             car: {},
             errors: {}
         }
+    }
+
+    componentWillMount() {
+        authService.getUser().then(res => {
+            if (!res) {
+                this.props.history.push('authentication/login');
+            }
+        })
     }
 
 
@@ -42,7 +49,7 @@ export default class AddCar extends Component {
 
         this.setState({
             errors: {
-                manufacturerError: manufacturer.value && manufacturer.value!='error' && manufacturer.value!='all' ? '' : 'Invalid manufacturer',
+                manufacturerError: manufacturer.value && manufacturer.value != 'error' && manufacturer.value != 'all' ? '' : 'Invalid manufacturer',
                 modelError: model.value ? '' : 'Invalid model',
                 imageError: image.value ? '' : 'Invalid image',
                 yearError: year.value ? '' : 'Invalid year',
@@ -55,20 +62,12 @@ export default class AddCar extends Component {
 
         if (this.validation()) {
             authService.getUser().then(res => {
-                if (!res) {
-                    this.props.history.push('/authentication/login')
-                }
-                else {
-
-                    this.setState(prevState => ({ ...prevState, car: { ...prevState.car, userId: res.sub } }))
-                    services.create(this.state.car, "cars")
-                        .then(data => this.props.history.push("/cars"))
-                        .catch(err => console.log(err.message))
-                }
-
+                this.setState(prevState => ({ ...prevState, car: { ...prevState.car, userId: res.sub } }))
+                services.create(this.state.car, "cars")
+                    .then(data => this.props.history.push("/cars"))
+                    .catch(err => console.log(err.message))
             })
                 .catch(error => console.log(error.message))
-
         }
     }
 
