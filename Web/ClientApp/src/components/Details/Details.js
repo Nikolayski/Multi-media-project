@@ -3,6 +3,7 @@ import './Details.css'
 import * as services from '../../Services/ComponentServices';
 import authService from '../api-authorization/AuthorizeService';
 import CommentForm from '../CommentForm/CommentForm';
+import Comments from '../Comments/Comments';
 
 export default class Details extends Component {
     constructor(props) {
@@ -85,14 +86,8 @@ export default class Details extends Component {
                             <p>Price: {this.state.result.price}</p>
                         </article>
                     </div>
-                    <div className="comments-wrapper">
-                        {this.state.comments.map(x => (
-                            <div className="comment" key={x.id}>
-                                <p>{x.message}</p>
-                                <i>{x.creatorUsername}</i>
-                            </div>
-                        ))}
-                    </div>
+
+                    <Comments comments={this.state.comments} />
 
                     <CommentForm submit={this.commentFormHandler.bind(this)} />
               
@@ -108,14 +103,9 @@ export default class Details extends Component {
                     <img src={this.state.result.image}></img>
                     <p>{this.state.result.description}</p>
                 </section>
-                <div className="comments-wrapper">
-                    {this.state.comments.map(x => (
-                        <div className="comment" key={x.id}>
-                            <p>{x.message}</p>
-                            <i>{x.creatorUsername}</i>
-                        </div>
-                    ))}
-                </div>
+
+                <Comments comments={this.state.comments} />
+                
 
                 <CommentForm submit={this.commentFormHandler.bind(this)} />
                

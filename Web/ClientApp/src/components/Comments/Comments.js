@@ -3,6 +3,14 @@
 const Comments = (props) => {
 
     return (
-            <h1>HEllo from Comments</h1>
+        <div className="comments-wrapper">
+            {props.comments.map(x => (
+                <div className="comment" key={x.id}>
+                    <p>{x.message}</p>
+                    <i>{x.creatorUsername}</i>
+                </div>
+            ))}
+        </div>
         )
 }
+export default Comments;
