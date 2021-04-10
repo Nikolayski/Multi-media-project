@@ -50,8 +50,8 @@ namespace Web.Controllers
             return detailsModel;
         }
 
-        [Authorize]
-        [HttpPost("/api/[controller]/edit/")]
+        //[Authorize]
+        [HttpPut("/api/[controller]/edit/")]
         public async Task<IActionResult> Edit(BlogDetailsViewModel blogModel)
         {
 
@@ -79,16 +79,18 @@ namespace Web.Controllers
         }
 
         [HttpDelete("/api/[controller]/remove/{id}")]
-        public async Task<string> RemoveCar(string id)
+        public async Task<string> RemoveBlog(string id)
         {
-         bool IsDeleted =   await this.blogService.RemoveCarAsync(id);
+         bool IsDeleted =   await this.blogService.RemoveBlogAsync(id);
+            ;
             if (IsDeleted)
             {
-                return "Done";
+                return "Error";
             }
             else
             {
-                return "Error";
+                return "Done";
+              
             }
         }
     }

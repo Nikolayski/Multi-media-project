@@ -64,3 +64,9 @@
 .car-search input:last-child {
             color: white;
 }
+
+.cars-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

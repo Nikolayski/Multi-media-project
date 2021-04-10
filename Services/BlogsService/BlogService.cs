@@ -117,12 +117,14 @@ namespace Services.BlogsService
                  .TakeLast(4);
         }
 
-        public async Task<bool> RemoveCarAsync(string id)
+        public async Task<bool> RemoveBlogAsync(string id)
         {
             var wantedBlog = this.db.Blogs.FirstOrDefault(x => x.Id == id);
             this.db.Blogs.Remove(wantedBlog);
+            var blogComments = this.db.BlogComments.Where(x => x.BlogId == id).ToList();
+            this.db.RemoveRange(blogComments);
             await this.db.SaveChangesAsync();
-            return !this.db.Blogs.Any(x => x.Id == id);
+            return this.db.Blogs.Any(x => x.Id == id);
         }
     }
 }

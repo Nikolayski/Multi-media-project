@@ -79,7 +79,7 @@ export default class Cars extends Component {
         if (this.state.cars.length == 0) {
             return (
                 <div className="no-cars-manufacturer">
-                    <h2 className="no-cars-message">No cars available</h2>
+                    <h2 className="no-cars-message" style={{ display: 'flex', justifyContent: 'center', color: 'whitesmoke' }}>No cars available</h2>
                     <SelectManufacturer change={this.getManufacturer.bind(this)} />
                     <Link className="addcar-button" to="/addCar">Add Car</Link>
                 </div>

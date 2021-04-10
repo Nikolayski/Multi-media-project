@@ -63,3 +63,15 @@ export const remove = (id, collectionPath) => {
         .then(res => res.text())
         .catch(err => console.log(err.message))
 }
+
+export const edit = (collectionPath, data) => {
+    console.log(collectionPath);
+    console.log(data)
+    fetch(`https://localhost:44387/api/${collectionPath}/edit/`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+    })
+        .then(res => res.text())
+        .catch(error => console.log(error.message))
+}

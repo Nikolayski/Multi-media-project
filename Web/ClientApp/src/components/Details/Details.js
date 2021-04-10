@@ -2,6 +2,7 @@
 import './Details.css'
 import * as services from '../../Services/ComponentServices';
 import authService from '../api-authorization/AuthorizeService';
+import CommentForm from '../CommentForm/CommentForm';
 
 export default class Details extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ export default class Details extends Component {
         }
     }
 
-     componentDidMount() {
+    componentDidMount() {
+ 
         services.getDetails(this.props.match.params.id, this.state.detailsPath)
             .then(data => this.setState({ result: data }))
             .catch(error => console.log(error.message))
@@ -78,7 +80,7 @@ export default class Details extends Component {
                             <h4>Model: {this.state.result.model}</h4>
                             <p>Info: {this.state.result.info}</p>
                             <p>Contact: {this.state.result.contact}</p>
-                            <p>Owner: {this.state.result.owner}</p>
+                            <p>Owner: {this.state.result.ownerUsername}</p>
                             <p>Year: {this.state.result.year}</p>
                             <p>Price: {this.state.result.price}</p>
                         </article>
@@ -91,12 +93,9 @@ export default class Details extends Component {
                             </div>
                         ))}
                     </div>
-                    <div className="comment-form-wrapper">
-                        <form onSubmit={this.commentFormHandler.bind(this)} className="comment-form">
-                            <textarea rows="8" cols="50" name="description"></textarea>
-                            <input type="submit" value="Add comment" />
-                        </form>
-                    </div>
+
+                    <CommentForm submit={this.commentFormHandler.bind(this)} />
+              
                 </section>
             )
         }
@@ -117,12 +116,9 @@ export default class Details extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="comment-form-wrapper">
-                    <form onSubmit={this.commentFormHandler.bind(this)} className="comment-form">
-                        <textarea rows="8" cols="50" name="description"></textarea>
-                        <input type="submit" value="Add comment" />
-                    </form>
-                </div>
+
+                <CommentForm submit={this.commentFormHandler.bind(this)} />
+               
             </section>
         )
     }

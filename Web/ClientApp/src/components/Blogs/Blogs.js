@@ -58,7 +58,7 @@ export default class Blogs extends Component {
         }
         return (
             <div className="no-blogs-theme">
-                <h2>No blogs available</h2>
+                <h2 style={{ display: 'flex', justifyContent: 'center', color: 'whitesmoke' }}>No blogs available</h2>
                 <SelectBlogTheme change={this.showTheme.bind(this)} />
                 <Link className="addblog-button" to="/addBlog">Add Blog</Link>
             </div>

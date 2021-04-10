@@ -149,7 +149,9 @@ namespace Services
         public async Task<bool> RemoveCarAsync(string id)
         {
             var wantedCar = this.db.Cars.FirstOrDefault(x => x.Id == id);
-            this.db.Cars.Remove(wantedCar);
+             this.db.Cars.Remove(wantedCar);
+            var carComments = this.db.CarComments.Where(x => x.CarId == id).ToList();
+            this.db.CarComments.RemoveRange(carComments);
             await this.db.SaveChangesAsync();
             return this.db.Cars.Any(x => x.Id == id);
         }

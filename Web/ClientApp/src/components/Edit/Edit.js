@@ -24,21 +24,27 @@ export default class Edit extends Component {
     }
 
 
-    async handleEvent(event) {
+    handleEvent(event) {
         event.preventDefault();
-        const token = await authService.getAccessToken();
-        const data = this.state;
-        axios.post(`/api/${this.props.match.params.type}/edit/`, data, {
-            headers: !token ? {} : { 'Authorization': `Bearer ${token}` },
-        })
-            .then(response => {
-                this.props.history.push(`/my${this.props.match.params.type}`)
 
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
+        fetch(`https://localhost:44387/api/${this.props.match.params.type}/edit/`, {
+            method: 'PUT',
+            body: JSON.stringify(this.state),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(res => res.text())
+            .then(data => this.props.history.push(`/my${this.props.match.params.type}`))
+            .catch(error => console.log(error.message))
+
+        //services.edit(this.props.match.params.type, this.state)
+        //    .then(data => console.log(data))
+        //    .catch(error => console.log(error.message))
     }
+    
+
+
+
+
 
     render() {
         if (this.props.match.params.type == "cars") {

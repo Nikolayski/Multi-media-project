@@ -17,7 +17,7 @@ namespace Models
         [Required]
         public string Message { get; set; }
 
-        [Required]
+    
         public string CreatorId { get; set; }
         public virtual ApplicationUser Creator { get; set; }
 

@@ -79,10 +79,11 @@ namespace Web.Controllers
 
        
 
-        [Authorize]
-        [HttpPost("/api/[controller]/edit/")]
+        //[Authorize]
+        [HttpPut("/api/[controller]/edit/")]
         public async Task<IActionResult> Edit(CarEditViewModel car)
         {
+            ;
             await this.carsService.EditCarAsync(car);
             return Ok("Done");
         }
@@ -113,16 +114,18 @@ namespace Web.Controllers
         }
 
         [HttpDelete("/api/[controller]/remove/{id}")]
-        public async Task<IActionResult> RemoveCar(string id)
+        public async Task<string> RemoveCar(string id)
         {
             var IsRemoved = await this.carsService.RemoveCarAsync(id);
+            ;
             if (IsRemoved)
             {
-                return NotFound("Error");
+                return "Error";
             }
             else
             {
-                return Ok("Done");
+                return "Done";
+
             }
         }
 }
