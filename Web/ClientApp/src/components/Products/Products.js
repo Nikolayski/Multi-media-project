@@ -51,6 +51,7 @@ const Products = (props) => {
             <article className="product-card-wrapper">
                 {products.map(x => (
                     <Product key={x.id}
+                        id={x.id}
                         productType={x.productType}
                         image={x.image}
                         description={x.description}

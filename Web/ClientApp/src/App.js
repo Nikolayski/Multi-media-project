@@ -33,6 +33,7 @@ export default class App extends Component {
                     <Route exact path='/addCar' component={AddCar} />
                     <Route  key={'carDetals' } path='/carDetails/:id' component={Details} />
                     <Route  key={'blogDetals'} path='/blogDetails/:id' component={Details} />
+                    <Route  key={'productsDetals'} path='/productDetails/:id' component={Details} />
                     <Route exact path='/blogs' component={Blogs} />
                     <Route exact path='/addBlog' component={AddBlog} />
                     <Route key={'carsCollection' } path='/myBlogs' component={MyCollection} />

@@ -10,5 +10,7 @@ namespace Services.CommentService
         Task<IEnumerable<CommentAllViewModel>> GetCarCommentsById(string id);
         Task CreateBlogComment(BlogAddViewModel commentModel);
         Task<IEnumerable<CommentAllViewModel>> GetBlogCommentsById(string id);
+        Task CreateProductComment(CommentProductViewModel commentModel);
+        Task<IEnumerable<CommentAllViewModel>> GetProductById(string id);
     }
 }

@@ -30,13 +30,28 @@ namespace Services.ProductsService
             await this.db.SaveChangesAsync();
         }
 
+        public async Task<ProductDetailsViewModel> GetProductById(string id)
+        {
+            return this.db.Products.Where(x => x.Id == id)
+                        .Select(x => new ProductDetailsViewModel
+                        {
+                            Id = x.Id,
+                            ProductType = x.ProductType.ToString(),
+                            Image = x.Image,
+                            Description = x.Description,
+                            CreatorUsername = x.Creator.UserName,
+                            Price = x.Price
+                        })
+                        .FirstOrDefault();
+        }
+
         public async Task<IEnumerable<ProductAllViewModel>> GetProducts()
         {
             return this.db.Products.Select(x => new ProductAllViewModel
             {
                 Id = x.Id,
                 Image = x.Image,
-               ProductType = x.ProductType.ToString(),
+                ProductType = x.ProductType.ToString(),
                 Description = x.Description,
                 CreatorUsername = x.Creator.UserName,
                 Price = x.Price,
@@ -46,7 +61,7 @@ namespace Services.ProductsService
 
         public async Task<IEnumerable<ProductAllViewModel>> GetProductsByType(string productType)
         {
-            return this.db.Products.Where(x => x.ProductType == Enum.Parse<ProductType>(productType,true))
+            return this.db.Products.Where(x => x.ProductType == Enum.Parse<ProductType>(productType, true))
                                     .Select(x => new ProductAllViewModel
                                     {
                                         Id = x.Id,

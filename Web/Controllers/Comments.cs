@@ -30,6 +30,12 @@ namespace Web.Controllers
             return await this.commentService.GetBlogCommentsById(id);
         }
 
+        [HttpGet("/api/[controller]/products/get/{id}")]
+        public async Task<IEnumerable<CommentAllViewModel>> GetCommentsByProductId(string id)
+        {
+            return await this.commentService.GetProductById(id);
+        }
+
         [HttpPost("/api/[controller]/cars/post/")]
         public async Task<IActionResult> Post(CommentAddViewModel commentModel)
         {
@@ -44,6 +50,14 @@ namespace Web.Controllers
         public async Task<IActionResult> Post(BlogAddViewModel commentModel)
         {
             await this.commentService.CreateBlogComment(commentModel);
+
+            return Ok("DONE!");
+        }
+
+        [HttpPost("/api/[controller]/products/post/")]
+        public async Task<IActionResult> Post(CommentProductViewModel commentModel)
+        {
+            await this.commentService.CreateProductComment(commentModel);
 
             return Ok("DONE!");
         }

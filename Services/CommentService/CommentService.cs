@@ -48,6 +48,20 @@ namespace Services.CommentService
 
         }
 
+        public async Task CreateProductComment(CommentProductViewModel commentModel)
+        {
+            var comment = new Comment
+            {
+                Message = commentModel.Description,
+                CreatorId = commentModel.UserId,
+
+            };
+            await this.db.Comments.AddAsync(comment);
+            await this.db.SaveChangesAsync();
+            await this.db.ProductComments.AddAsync(new ProductsComments { CommentId = comment.Id, ProductId = commentModel.Id });
+            await this.db.SaveChangesAsync();
+        }
+
         public async   Task<IEnumerable<CommentAllViewModel>> GetBlogCommentsById(string id)
         {
             return this.db.BlogComments.Where(x => x.BlogId == id)
@@ -72,6 +86,16 @@ namespace Services.CommentService
                         .ToList();
         }
 
-      
+        public async Task<IEnumerable<CommentAllViewModel>> GetProductById(string id)
+        {
+            return this.db.ProductComments.Where(x => x.ProductId == id)
+                      .Select(x => new CommentAllViewModel
+                      {
+                          Id = x.Comment.Id,
+                          Message = x.Comment.Message,
+                          CreatorUsername = x.Comment.Creator.UserName
+                      })
+                      .ToList();
+        }
     }
 }

@@ -22,6 +22,13 @@ namespace Web.Controllers
             return await this.productsService.GetProducts();
         }
 
+        [HttpGet("/api/[controller]/{id}")]
+        public async Task<ProductDetailsViewModel> GetProductById(string id)
+        {
+            ;
+            return await this.productsService.GetProductById(id);
+        }
+
         [HttpGet("/api/[controller]/get/{productType}")]
         public async Task<IEnumerable<ProductAllViewModel>> GetProductType(string productType)
         {
@@ -35,6 +42,8 @@ namespace Web.Controllers
             await this.productsService.AddAsync(productModel, productModel.UserId);
             return Ok("Done");
         }
+
+
 
     }
 }

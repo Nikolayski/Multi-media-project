@@ -11,5 +11,6 @@ namespace Services.ProductsService
         Task AddAsync(ProductAddViewModel productModel, string userId);
         Task<IEnumerable<ProductAllViewModel>> GetProducts();
         Task<IEnumerable<ProductAllViewModel>> GetProductsByType(string productType);
+        Task<ProductDetailsViewModel> GetProductById(string id);
     }
 }

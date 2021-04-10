@@ -24,6 +24,7 @@ namespace Data
 
         public DbSet<CarComments> CarComments { get; set; }
         public DbSet<BlogComments> BlogComments { get; set; }
+        public DbSet<ProductsComments> ProductComments { get; set; }
 
         public DbSet<Contact>  Contacts{ get; set; }
     }
