@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import './SelectBlogTheme.css';
 
 export default class SelectBlogTheme extends Component {
     constructor(props) {

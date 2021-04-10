@@ -19,6 +19,9 @@ namespace Data
         public DbSet<Blog>  Blogs{ get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
         public DbSet<CarComments> CarComments { get; set; }
         public DbSet<BlogComments> BlogComments { get; set; }
 

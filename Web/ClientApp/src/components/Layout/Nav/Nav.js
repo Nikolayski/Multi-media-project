@@ -30,6 +30,9 @@ export default class Nav extends Component {
                                 <NavLink activeClassName="navlink-active" className="navigation-link" exact={true} to="/">Home</NavLink>
                             </li>
                             <li className="navigation-item">
+                                <NavLink activeClassName="navlink-active" className="navigation-link" exact={true} to="/products" >Products</NavLink>
+                            </li>
+                            <li className="navigation-item">
                                 <NavLink activeClassName="navlink-active" className="navigation-link" exact={true} to="/cars" >Cars</NavLink>
                             </li>
                             <li className="navigation-item">

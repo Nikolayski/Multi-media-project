@@ -1,0 +1,28 @@
+﻿
+.products-wrapper {
+    margin: 30px auto;
+}
+
+.addProduct-button-wrapper {
+    display: flex;
+    justify-content: center;
+        margin:30px auto;
+}
+
+.addProduct-button {
+    border: 1px solid;
+    padding: 2px 20px;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 8px 5px lightgrey;
+    color: whitesmoke;
+    margin-left:20px;
+}
+
+.product-card-wrapper {
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+}

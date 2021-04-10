@@ -59,20 +59,6 @@
 }
 
 
-.select-theme {
-    border: none;
-    background: transparent;
-    box-shadow: 0px 0px 8px 5px lightgrey;
-    color: lightgray;
-    border-radius: 12px;
-    padding: 5px;
-    margin-left:20px;
-}
-
-.select-theme option {
-        background: rgb(100, 190, 200);
-    }
-
 .blogs-theme {
    text-align:center;
 }

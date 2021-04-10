@@ -42,7 +42,7 @@ namespace Web.Controllers
             var cars = await this.carsService.GetCarsBySearch(car);
             return cars;
 
-           
+
         }
 
         [HttpGet("/api/[controller]/rup/{id}")]
@@ -77,7 +77,7 @@ namespace Web.Controllers
             return Ok("Done!!!");
         }
 
-       
+
 
         //[Authorize]
         [HttpPut("/api/[controller]/edit/")]
@@ -91,10 +91,10 @@ namespace Web.Controllers
         [HttpGet("/api/[controller]/get/{manufacturer}")]
         public async Task<IEnumerable<CarsAllViewModel>> GetCarsByManufacturer(string manufacturer)
         {
-                var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
-                var user = this.User;
-                return cars;
-           
+            var cars = await this.carsService.GetCarsByManunfacturer(manufacturer);
+            var user = this.User;
+            return cars;
+
         }
 
         [HttpGet("/api/[controller]/my-cars/{id}")]
@@ -128,7 +128,7 @@ namespace Web.Controllers
 
             }
         }
-}
+    }
 
 
 }

@@ -12,6 +12,7 @@ namespace Models
             this.Cars = new HashSet<Car>();
             this.Blogs = new HashSet<Blog>();
             this.Comments = new HashSet<Comment>();
+            this.Products = new HashSet<Product>();
         }
 
         public virtual ICollection<Car> Cars{ get; set; }
@@ -19,5 +20,7 @@ namespace Models
         public virtual ICollection<Blog> Blogs{ get; set; }
 
         public virtual ICollection<Comment> Comments{ get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

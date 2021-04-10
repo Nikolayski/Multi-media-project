@@ -9,5 +9,28 @@ body {
 }
 
 code {
-  color: #E01A76;
+    color: #E01A76;
+}
+
+
+.proc-login {
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+    .loading-spinner {
+        animation: App-logo-spin infinite 10s linear;
+    }
+}
+
+@keyframes loading-spinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

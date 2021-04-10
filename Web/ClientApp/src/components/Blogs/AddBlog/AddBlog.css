@@ -3,8 +3,17 @@
     display: flex;
     flex-direction: column;
     max-width: 40%;
-    margin: 50px auto;
+    margin: 50px auto 100px auto;
 }
+    .addblog-wrapper input,
+    .addblog-wrapper textarea,
+    .addblog-wrapper button,
+    .addBlog-theme {
+        background: transparent;
+        box-shadow: 0px 0px 8px 5px lightgrey;
+        border: 3px solid lightgrey;
+        border-radius:10px;
+    }
 
     .addblog-wrapper * {
         padding: 10px;

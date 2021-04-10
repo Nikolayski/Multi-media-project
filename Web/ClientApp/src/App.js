@@ -15,6 +15,8 @@ import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import MyCollection from './components/MyCollection/MyCollection';
 import Details from './components/Details/Details';
+import Products from './components/Products/Products';
+import AddProduct from './components/Products/AddProduct/AddProduct';
 
 export default class App extends Component {
 
@@ -25,6 +27,8 @@ export default class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={ About} />
                     <Route exact path='/contact' component={Contact} />
+                    <Route exact path='/addProduct' component={AddProduct} />
+                    <Route exact path='/products' component={Products} />
                     <Route exact path='/cars' component={Cars} />
                     <Route exact path='/addCar' component={AddCar} />
                     <Route  key={'carDetals' } path='/carDetails/:id' component={Details} />

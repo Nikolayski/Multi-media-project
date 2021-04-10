@@ -51,9 +51,9 @@ export class Login extends Component {
         } else {
             switch (action) {
                 case LoginActions.Login:
-                    return (<div>Processing login</div>);
+                    return (<div className="proc-login"><img className="loading-spinner" style={{ width: '10%' }} src="https://icons8.com/preloaders/img/favicons/favicon-194x194.png" /></div>);
                 case LoginActions.LoginCallback:
-                    return (<div>Processing login callback</div>);
+                    return (<div className="proc-login"><img className="loading-spinner" style={{ width: '10%' }} src="https://icons8.com/preloaders/img/favicons/favicon-194x194.png" /></div>);
                 case LoginActions.Profile:
                 case LoginActions.Register:
                     return (<div></div>);

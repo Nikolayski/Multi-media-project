@@ -88,7 +88,7 @@ export default class AddCar extends Component {
                         <span className="field-validation">{this.state.errors.priceError}</span>
                         <input onChange={this.inputOnChange.bind(this)} type="number" placeholder="Phone Contact" name="contact" />
                         <span className="field-validation">{this.state.errors.contactError}</span>
-                        <textarea onChange={this.inputOnChange.bind(this)} type="text" placeholder="Info" name="info"></textarea>
+                        <textarea onChange={this.inputOnChange.bind(this)} rows="7" cols="22" type="text" placeholder="Info" name="info"></textarea>
                         <span className="field-validation">{this.state.errors.infoError}</span>
                         <button type="submit">Add</button>
                     </form>

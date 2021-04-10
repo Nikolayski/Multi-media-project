@@ -50,7 +50,6 @@ namespace Web.Controllers
             return detailsModel;
         }
 
-        //[Authorize]
         [HttpPut("/api/[controller]/edit/")]
         public async Task<IActionResult> Edit(BlogDetailsViewModel blogModel)
         {

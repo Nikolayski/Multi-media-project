@@ -21,7 +21,7 @@ export default class AddBlog extends Component {
 
     validation() {
         if (this.state.errors.themeError === '' && this.state.errors.titleError === ''
-            && this.state.errors.descriptionError == '' && this.state.errors.imageError == '') {
+            && this.state.errors.descriptionError === '' && this.state.errors.imageError === '') {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ export default class AddBlog extends Component {
         return (
             <form onSubmit={this.sendData.bind(this)}>
                 <article className="addblog-wrapper">
-                    <select onChange={this.onInputChange.bind(this)} name="theme">
+                    <select className="addBlog-theme" onChange={this.onInputChange.bind(this)} name="theme">
                         <option value="ERROR">Choose your theme</option>
                         <option value="photography">Photography</option>
                         <option value="sports">Sports</option>
