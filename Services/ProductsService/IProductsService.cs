@@ -12,5 +12,8 @@ namespace Services.ProductsService
         Task<IEnumerable<ProductAllViewModel>> GetProducts();
         Task<IEnumerable<ProductAllViewModel>> GetProductsByType(string productType);
         Task<ProductDetailsViewModel> GetProductById(string id);
+        Task<IEnumerable<ProductAllViewModel>> GetProductCollection(string id);
+        Task<bool> RemoveBlogById(string id);
+        Task EditProductAsync(ProductEditViewModel car);
     }
 }

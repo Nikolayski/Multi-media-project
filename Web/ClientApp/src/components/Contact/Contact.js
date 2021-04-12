@@ -31,9 +31,7 @@ const Contact = (props) => {
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.text())
-            .then(data => {
-                SetMessage('Done!')
-            })
+            .then(data => SetMessage('Done!'))
             .catch(err => console.log(err.message))
 
 
@@ -85,7 +83,7 @@ const Contact = (props) => {
                         <div className="contact-field field-button">
                             <input type="submit" value="Send" />
                         </div>
-                        <p>{message}</p>
+                        <p style={{color:'whitesmoke', marginLeft: '100px', fontWeight:'bold', fontSize:'20px'}}>{message}</p>
                     </article>
                 </form>
             </section>

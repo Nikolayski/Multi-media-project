@@ -38,6 +38,7 @@ export default class App extends Component {
                     <Route exact path='/addBlog' component={AddBlog} />
                     <Route key={'carsCollection' } path='/myBlogs' component={MyCollection} />
                     <Route key={'blogsCollection'}  path='/myCars'component={MyCollection} />
+                    <Route key={'productsCollection'}  path='/myProducts'component={MyCollection} />
                     <Route exact path='/edit/:type/:id' component={Edit} />
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
                 </Switch>

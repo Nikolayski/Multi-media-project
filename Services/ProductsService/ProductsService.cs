@@ -30,6 +30,23 @@ namespace Services.ProductsService
             await this.db.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<ProductAllViewModel>> GetProductCollection(string id)
+        {
+            return this.db.Products.Where(x => x.CreatorId == id)
+                          .Select(x => new ProductAllViewModel
+                          {
+                              Id = x.Id,
+                              CreatorUsername = x.Creator.UserName,
+                              Description = x.Description,
+                              Image = x.Image,
+                              Price = x.Price,
+                              ProductType = x.ProductType.ToString(),
+
+                          })
+                          .ToList();
+
+        }
+
         public async Task<ProductDetailsViewModel> GetProductById(string id)
         {
             return this.db.Products.Where(x => x.Id == id)
@@ -73,6 +90,25 @@ namespace Services.ProductsService
 
                                     })
                                     .ToList();
+        }
+
+        public async Task<bool> RemoveBlogById(string id)
+        {
+            var wantedProduct = this.db.Products.FirstOrDefault(x => x.Id == id);
+            this.db.Products.Remove(wantedProduct);
+            var productComments = this.db.ProductComments.Where(x => x.ProductId== id).ToList();
+            this.db.ProductComments.RemoveRange(productComments);
+            await this.db.SaveChangesAsync();
+            return this.db.Products.Any(x => x.Id == id);
+        }
+
+        public async Task EditProductAsync(ProductEditViewModel product)
+        {
+            var wantedProduct = this.db.Products.FirstOrDefault(x => x.Id == product.Id);
+            wantedProduct.Description = product.Description;
+            wantedProduct.Image = product.Image;
+            wantedProduct.Price = product.Price;
+            await this.db.SaveChangesAsync();
         }
     }
 }

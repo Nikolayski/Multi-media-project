@@ -41,6 +41,7 @@ export default class Nav extends Component {
                             {this.state.IsLogged ? <li className="navigation-item hiddens">
                                 <button className="navigation-item-btn">Collections <i className="fa fa-caret-down"></i></button>
                                 <div className="navigation-item-links">
+                                    <Link className="navigation-item-links-link" to="/myProducts">My Products</Link>
                                     <Link className="navigation-item-links-link" to="/myBlogs">My Blogs</Link>
                                     <Link className="navigation-item-links-link" to="/myCars">My Cars</Link>
                                 </div>

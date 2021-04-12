@@ -3,6 +3,7 @@ import authService from '../api-authorization/AuthorizeService';
 import Blog from '../Blogs/Blog/Blog';
 import Car from '../Cars/Car/Car';
 import * as services from '../../Services/ComponentServices';
+import Product from '../Products/Product/Product';
 
 export default class MyCollection extends Component {
     constructor(props) {
@@ -47,29 +48,47 @@ export default class MyCollection extends Component {
                 </article>
             )
         }
-
+        else if (this.props.match.path == "/myCars") {
+            return (
+                <div>
+                    <section className="car-card-wrapper">
+                        {this.state.myColl.map(x => (
+                            <Car key={x.id}
+                                id={x.id}
+                                manufacturer={x.manufacturer}
+                                model={x.model}
+                                image={x.image}
+                                year={x.year}
+                                price={x.price}
+                                contact={x.contact}
+                                owner={x.ownerUsername}
+                                ratingUp={x.ratingUp}
+                                ratingDown={x.ratingDown}
+                                edit="true"
+                                remove="true"
+                            />
+                        ))}
+                    </section>
+                </div>
+            )
+        }
         return (
-            <div>
-                <section className="car-card-wrapper">
-                    {this.state.myColl.map(x => (
-                        <Car key={x.id}
-                            id={x.id}
-                            manufacturer={x.manufacturer}
-                            model={x.model}
-                            image={x.image}
-                            year={x.year}
-                            price={x.price}
-                            contact={x.contact}
-                            owner={x.ownerUsername}
-                            ratingUp={x.ratingUp}
-                            ratingDown={x.ratingDown}
-                            edit="true"
-                            remove="true"
-                        />
-                    ))}
-                </section>
-            </div>
+            <section className="car-card-wrapper">
+                {this.state.myColl.map(x => (
+                    <Product key={x.id}
+                        id={x.id}
+                        productType={x.productType}
+                        image={x.image}
+                        description={x.description}
+                        price={x.price}
+                        creatorUsername={x.creatorUsername}
+                        edit="true"
+                        remove="true"
+                    />
+                ))}
+            </section>
         )
+
     }
 }
 

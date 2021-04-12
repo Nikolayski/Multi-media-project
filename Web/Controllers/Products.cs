@@ -36,6 +36,14 @@ namespace Web.Controllers
             return await this.productsService.GetProductsByType(productType);
         }
 
+        [HttpGet("/api/[controller]/my-products/{id}")]
+        public async Task<IEnumerable<ProductAllViewModel>> GetProductCollection(string id)
+        {
+            ;
+            return await  this.productsService.GetProductCollection(id);
+        
+        }
+
         [HttpPost("/api/[controller]/post/")]
         public async Task<IActionResult> CreateProduct(ProductAddViewModel productModel)
         {
@@ -43,7 +51,23 @@ namespace Web.Controllers
             return Ok("Done");
         }
 
+        [HttpPut("/api/[controller]/edit/")]
+        public async Task<IActionResult> Edit(ProductEditViewModel product)
+        {
+            ;
+            await this.productsService.EditProductAsync(product);
+            return Ok("Done");
+        }
 
+
+        [HttpDelete("/api/[controller]/remove/{id}")]
+        public async Task<string> RemoveBlog(string id)
+        {
+           bool IsDeleted =  await this.productsService.RemoveBlogById(id);
+
+            return "Done";
+
+        }
 
     }
 }
