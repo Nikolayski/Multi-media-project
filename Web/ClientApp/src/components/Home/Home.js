@@ -16,6 +16,8 @@ const Home = (props) => {
         detailsPath: 'carDetails'
     });
 
+
+
     const slideImages = [
         'https://www.openbusinesscouncil.org/wp-content/uploads/2020/09/Main-Picture.jpg',
         'https://miro.medium.com/max/683/1*B29dWBwY9nAZExVaYTMkUQ.png',
@@ -30,7 +32,8 @@ const Home = (props) => {
                     <RandomElements />
                 </HomeContext.Provider>
             </div>
-            <Slide images={slideImages} height={700 }/>
+            <Slide images={slideImages} height={700} />
+
 
         </>
     )

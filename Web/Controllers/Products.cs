@@ -69,5 +69,11 @@ namespace Web.Controllers
 
         }
 
+        [HttpGet("/api/[controller]/randomCollection")]
+        public async Task<IEnumerable<ProductsRandomViewModel>> GetProductRandomCollectio()
+        {
+         return   await this.productsService.GetRandomCollection();
+        }
+
     }
 }

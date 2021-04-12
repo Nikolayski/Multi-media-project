@@ -16,12 +16,42 @@ const RandomElements = (props) => {
             .catch(err => console.log(err.message))
     }, [])
 
+
+    if (homeContext.name == "cars") {
+        return (
+            <section className="random-elements-wrapper">
+                {randomCollection.map(x => (
+
+                    <div key={x.id} className="randomelement">
+                        <h3>{x.manufacturer}</h3>
+                        <p>{x.model}</p>
+                        <Link to={`/${homeContext.detailsPath}/${x.id}`}><img src={x.image} /></Link>
+                    </div>
+                ))}
+            </section>
+        )
+    }
+    else if (homeContext.naem == "blogs") {
+        return (
+            <section className="random-elements-wrapper">
+                {randomCollection.map(x => (
+
+                    <div key={x.id} className="randomelement">
+                        <h3>{x.theme}</h3>
+                        <p>{x.title}</p>
+                        <Link to={`/${homeContext.detailsPath}/${x.id}`}><img src={x.image} /></Link>
+                    </div>
+                ))}
+            </section>
+        )
+    }
     return (
         <section className="random-elements-wrapper">
             {randomCollection.map(x => (
+
                 <div key={x.id} className="randomelement">
-                    {x.manufacturer ? <h3>{x.manufacturer}</h3> : <h3>{x.theme}</h3>}
-                    {x.model ? <p>{x.model}</p> : <p>{x.title}</p>}
+                   <h3>{x.productType}</h3>
+                   <p>{x.title}</p>
                     <Link to={`/${homeContext.detailsPath}/${x.id}`}><img src={x.image} /></Link>
                 </div>
             ))}
@@ -30,3 +60,4 @@ const RandomElements = (props) => {
 }
 
 export default RandomElements;
+

@@ -96,7 +96,7 @@ namespace Services.ProductsService
         {
             var wantedProduct = this.db.Products.FirstOrDefault(x => x.Id == id);
             this.db.Products.Remove(wantedProduct);
-            var productComments = this.db.ProductComments.Where(x => x.ProductId== id).ToList();
+            var productComments = this.db.ProductComments.Where(x => x.ProductId == id).ToList();
             this.db.ProductComments.RemoveRange(productComments);
             await this.db.SaveChangesAsync();
             return this.db.Products.Any(x => x.Id == id);
@@ -109,6 +109,19 @@ namespace Services.ProductsService
             wantedProduct.Image = product.Image;
             wantedProduct.Price = product.Price;
             await this.db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ProductsRandomViewModel>> GetRandomCollection()
+        {
+            return this.db.Products.Select(x => new ProductsRandomViewModel
+            {
+                Id = x.Id,
+                Description = x.Description,
+                ProductType = x.ProductType.ToString(),
+                Image = x.Image
+            })
+                   .ToList()
+                 .TakeLast(4);
         }
     }
 }
