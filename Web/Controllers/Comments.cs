@@ -18,46 +18,18 @@ namespace Web.Controllers
             this.commentService = commentService;
         }
 
-        [HttpGet("/api/[controller]/cars/get/{id}")]
-        public async Task<IEnumerable<CommentAllViewModel>> GetCommentsByCarId(string id)
+        [HttpGet("/api/[controller]/{path}/get/{id}")]
+        public async Task<IEnumerable<CommentAllViewModel>> GetCommentsId(string id, string path)
         {
-            return await this.commentService.GetCarCommentsById(id);
+            ;
+            return await this.commentService.GetCommentsById(id, path);
         }
 
-        [HttpGet("/api/[controller]/blogs/get/{id}")]
-        public async Task<IEnumerable<CommentAllViewModel>> GetCommentsByBlogId(string id)
+        [HttpPost("/api/[controller]/{path}/post/")]
+        public async Task<IActionResult> Post(CommentAddViewModel commentModel, string path )
         {
-            return await this.commentService.GetBlogCommentsById(id);
-        }
-
-        [HttpGet("/api/[controller]/products/get/{id}")]
-        public async Task<IEnumerable<CommentAllViewModel>> GetCommentsByProductId(string id)
-        {
-            return await this.commentService.GetProductById(id);
-        }
-
-        [HttpPost("/api/[controller]/cars/post/")]
-        public async Task<IActionResult> Post(CommentAddViewModel commentModel)
-        {
-            await this.commentService.CreateCarComment(commentModel);
             
-            return Ok("DONE!");
-        }
-
-     
-
-        [HttpPost("/api/[controller]/blogs/post/")]
-        public async Task<IActionResult> Post(BlogAddViewModel commentModel)
-        {
-            await this.commentService.CreateBlogComment(commentModel);
-
-            return Ok("DONE!");
-        }
-
-        [HttpPost("/api/[controller]/products/post/")]
-        public async Task<IActionResult> Post(CommentProductViewModel commentModel)
-        {
-            await this.commentService.CreateProductComment(commentModel);
+            await this.commentService.CreateComment(commentModel, path);
 
             return Ok("DONE!");
         }

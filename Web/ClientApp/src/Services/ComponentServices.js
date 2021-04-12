@@ -25,8 +25,6 @@ export const getDetails = (id, collectionPath) => {
 }
 
 export const create = (state, collectionPath) => {
-    console.log(state)
-    console.log(collectionPath)
     return fetch(`https://localhost:44387/api/${collectionPath}/post/`, {
         method: 'POST',
         body: JSON.stringify(state),
