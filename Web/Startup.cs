@@ -49,7 +49,6 @@ namespace Web
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IProductsService, ProductsService>();
-            
 
             services.AddControllersWithViews();
             services.AddRazorPages();

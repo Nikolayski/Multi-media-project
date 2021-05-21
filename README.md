@@ -1,8 +1,5 @@
-# Multi-media-project
+# Multi media project
 
-# .NET5.0 rest api
-# Sql Server
-# React
-# OpenWeatherMap API
+ .NET5.0, Sql Server, React, OpenWeatherMap API
 
 
